@@ -16,7 +16,7 @@ final class ProjetosController extends Controller {
         }else{
             $logged = false;
         }
-
+        
         $this->loadView("PagInicial", [
             "Projetos" => $data,
             "logado" => $logged
@@ -42,9 +42,8 @@ final class ProjetosController extends Controller {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
 
-
-         if (!empty($_FILES['foto']['name'])) {
-            $nomeArquivo = $this->uploadFiles($_FILES['foto']); 
+         if (!empty($_FILES['capa']['name'])) {
+            $nomeArquivo = $this->uploadFiles($_FILES['capa']); 
             unlink("uploads/" . $fotoAtual);
         } else {
             $nomeArquivo = $fotoAtual;

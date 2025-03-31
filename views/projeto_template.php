@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-
-    <nav>
-        <h1>Farmácia Verde</h1>
+    <?php ?>
+    <nav style="background-color: <?php echo $_POST['cor1']; ?>">
+        <h1><?php echo $_POST['titulo']; ?></h1>
         <div class="links">
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
             <a href="index.php">Home</a>
-            <a href="#.php">Postagens</a>
+            <a href="Postagens.php">Postagens</a>
             <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
         </div>
     </nav>
-    
+
+    <h2>Sobre o Projeto</h2>
+    <p><?php echo $_POST['descricao'];?></p>
+
+    <hr>
+
     <h2>Postagens</h2>
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                <a href="Postagem.php" class="btn">Inserir novo</a>  

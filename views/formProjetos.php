@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>Adicionar Projetos</h1>
-    <form action="salvarProjeto.php">
+    <form action="salvarProjeto.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Projeto->getId(); ?>">
-        <input type="hidden" name="foto_atual" value="<?= $Projeto->getFoto() ?>">
+        <input type="hidden" name="foto_atual" value="<?= $Projeto->getCapa() ?>">
         
         
         <label for="foto">Título: </label>
@@ -20,7 +20,7 @@
         <input type="textarea" name="descricao" value="<?php echo $Projeto->getDescricao(); ?>" placeholder="Descrição:">
         <br>
         <label for="foto">Capa: </label>
-        <input type="file" name="foto" id="foto">
+        <input type="file" name="capa" id="foto">
         <br>
         <label for="cor1">Cor Primária: </label>
         <input type="color" name="cor1" value="<?php echo $Projeto->getCor1(); ?>" placeholder="Cor Primária:">

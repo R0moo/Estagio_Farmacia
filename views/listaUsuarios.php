@@ -11,7 +11,8 @@
 <nav>
         <h1>Farmácia Verde</h1>
         <div class="links">
-            <a href="Postagens.php">Home</a>
+            <a href="index.php">Home</a>
+            <a href="Postagens.php">Postagens</a>
             <a href="#">Usuarios</a>
             <a href="logout.php">Sair</a> 
         </div>

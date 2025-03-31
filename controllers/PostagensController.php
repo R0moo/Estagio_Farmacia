@@ -11,16 +11,17 @@ final class PostagensController extends Controller {
         $model = new PostagensModel();
         $data = $model->selectAll(new PostagensVO());
 
+
         if(isset($_SESSION["usuario"])){
             $logged = true;
         }else{
             $logged = false;
         }
 
-        $this->loadView("PagInicial", [
-            "Postagens" => $data,
-            "logado" => $logged
-        ]);
+            $this->loadView("projeto_template", [
+                "Postagens" => $data,
+                "logado" => $logged
+            ]);  
     }
 
     public function form() {
@@ -59,14 +60,15 @@ final class PostagensController extends Controller {
             $result = $model->update($vo);
         }
 
-        $this->redirect("Postagens.php");
+        $this->redirect("Template.php");
     }
 
     public function remove() {
-        $vo = new PostagensVO($_GET["id"]);
+        $vo = new PostagensVO($_GET["id"], '', '', $_GET['ft']);
         $model = new PostagensModel();
-
+        unlink("uploads/" . $vo->getFoto());
         $result = $model->delete($vo);
+        
 
-        $this->redirect("Postagens.php");
+        $this->redirect("Template.php");
     }}
