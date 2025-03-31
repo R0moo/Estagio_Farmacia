@@ -6,8 +6,12 @@
     <title>Farmácia Verde</title>
 </head>
 <body>
+    
+<?php $isNivel3 = $_SESSION['usuario']->getNivel() == '3'; ?>
     <h1>Postagens</h1>
+    <?php if ($isNivel3){ ?> 
     <a href="postagem.php">Nova Postagem</a>
+    <?php } ?>
     <table>
         <tr>
             <th>ID</th>

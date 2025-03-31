@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+
     <nav>
         <h1>Farmácia Verde</h1>
         <div class="links">
@@ -21,7 +22,7 @@
     </nav>
     
     <h2>Postagens</h2>
-    <?php if($logado){ ?>
+    <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                <a href="Postagem.php" class="btn">Inserir novo</a>  
             <?php }?>
     <div class="postagens">    

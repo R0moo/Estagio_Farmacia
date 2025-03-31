@@ -33,6 +33,7 @@
             <h4>Email: <?php echo $usuario->getEmail(); ?></h4>
             <h4>CPF: <?php echo $usuario->getCpf(); ?></h4>
             <h4>Ocupação: <?php echo $usuario->getOcupacao(); ?></h4>
+            <h4>Nível: <?php echo $usuario->getNivel(); ?></h4>
 
                 <div class="acoes">
                 <a href="usuario.php?id=<?php echo $usuario->getId(); ?>">Editar</a>
