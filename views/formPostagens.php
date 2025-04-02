@@ -12,6 +12,7 @@
     <form action="salvarPostagem.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Postagem->getId(); ?>">
         <input type="hidden" name="foto_atual" value="<?= $Postagem->getFoto() ?>">
+        <input type="hidden" name="projeto_id" value="<?= $Postagem->getProjetoId() ?>">
         
         
         <label for="foto">Título: </label>
@@ -22,6 +23,9 @@
         <br>
         <label for="foto">Foto: </label>
         <input type="file" name="foto" id="foto">
+        <br>
+        <label for="foto">Data de Criação: </label>
+        <input type="date" name="data_criacao" value="<?php echo $Postagem->getDataCriacao(); ?>" placeholder="Data de Criação:">
         <br>
         <div class="btns">
         <a href="Postagens.php">Voltar</a> <button type="submit">Salvar</button>

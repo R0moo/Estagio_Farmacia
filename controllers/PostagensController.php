@@ -4,13 +4,25 @@ namespace Controller;
 
 use Model\PostagensModel;
 use Model\VO\PostagensVO;
+use Model\ProjetosModel;
+use Model\VO\ProjetosVO;
 
 final class PostagensController extends Controller {
 
     public function list() {
-        $model = new PostagensModel();
-        $data = $model->selectAll(new PostagensVO());
+        if(isset($_POST)){
+            if(isset($_SESSION['projeto'])){
+                unset( $_SESSION['projeto'] );
+            }else{
+            session_start();
+            $_SESSION['projeto'] = $_POST;
+            }
+        }
 
+        $ProjetosModel = new ProjetosModel();
+
+        $model = new PostagensModel();
+        $data = $model->selectPostsPerProjects(new PostagensVO());
 
         if(isset($_SESSION["usuario"])){
             $logged = true;
@@ -33,9 +45,11 @@ final class PostagensController extends Controller {
             $Postagem = $model->selectOne($vo);
         } else {
             $Postagem = new PostagensVO();
+            $ProjetoId = $_SESSION['projeto']['id'];
         }
         $this->loadView("formPostagens", [
-            "Postagem" => $Postagem
+            "Postagem" => $Postagem,
+            "ProjetoId" => $ProjetoId
         ]);
     }
 
@@ -51,7 +65,7 @@ final class PostagensController extends Controller {
             $nomeArquivo = $fotoAtual;
         }
 
-        $vo = new PostagensVO($id, $_POST["titulo"], $_POST["descricao"], $nomeArquivo);
+        $vo = new PostagensVO($id, $_POST["titulo"], $_POST["descricao"], $nomeArquivo, $_POST["projeto_id"], $_POST["data_criacao"]);
         $model = new PostagensModel();
 
         if(empty($id)) {
