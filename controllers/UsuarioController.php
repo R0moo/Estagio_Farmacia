@@ -1,4 +1,5 @@
 <?php
+
 namespace Controller;
 
 use Model\UsuarioModel;
@@ -9,7 +10,6 @@ final class UsuarioController extends Controller
 
     public function __construct() {
         parent::__construct();
-
     }
 
     public function list(){
@@ -20,6 +20,7 @@ final class UsuarioController extends Controller
             "usuarios" => $data
         ]);
     }
+
     public function form(){
         $id = $_GET['id'] ?? 0;
 
@@ -42,11 +43,9 @@ final class UsuarioController extends Controller
         
         if(empty($id)){
             $result = $model->insert($vo);
-        }else{
+        } else {
             $result = $model->update($vo);
         }
-
-        
 
         $this->redirect("usuarios.php");
     }

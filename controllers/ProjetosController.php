@@ -11,12 +11,8 @@ final class ProjetosController extends Controller {
         $model = new ProjetosModel();
         $data = $model->selectAll(new ProjetosVO());
 
-        if(isset($_SESSION["usuario"])){
-            $logged = true;
-        }else{
-            $logged = false;
-        }
-        
+        $logged = isset($_SESSION["usuario"]);
+
         $this->loadView("PagInicial", [
             "Projetos" => $data,
             "logado" => $logged
@@ -42,9 +38,11 @@ final class ProjetosController extends Controller {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
 
-         if (!empty($_FILES['capa']['name'])) {
+        if (!empty($_FILES['capa']['name'])) {
             $nomeArquivo = $this->uploadFiles($_FILES['capa']); 
-            unlink("uploads/" . $fotoAtual);
+            if ($fotoAtual) {
+                unlink("uploads/" . $fotoAtual);
+            }
         } else {
             $nomeArquivo = $fotoAtual;
         }
@@ -68,4 +66,5 @@ final class ProjetosController extends Controller {
         $result = $model->delete($vo);
 
         $this->redirect("Projetos.php");
-    }}
+    }
+}

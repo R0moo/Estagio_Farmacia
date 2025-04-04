@@ -5,7 +5,9 @@ namespace Controller;
 abstract class Controller {
 
     public function __construct($obrigaLogin = false){
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if($obrigaLogin) {
             if(!isset($_SESSION["usuario"])) {
                 $this->redirect("login.php");
@@ -16,6 +18,7 @@ abstract class Controller {
 
     public function redirect($url) {
         header("Location: " . $url);
+        exit; // Adicionar exit após redirecionar
     }
 
     public function loadView($view, $data = []) {

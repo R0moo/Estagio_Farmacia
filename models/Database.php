@@ -3,14 +3,20 @@
 namespace Model;
 
 use \PDO;
+use \PDOException;
 
 final class Database {
 
     private $connection;
 
     public function __construct() {
-        $this->connection = new PDO("mysql:host=" . HOST . ";dbname=" . BASE, USER, PASS);
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $this->connection = new PDO("mysql:host=" . HOST . ";dbname=" . BASE, USER, PASS);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            // Tratar erro de conexão
+            die("Connection failed: " . $e->getMessage());
+        }
     }
 
     public function select($query, $binds = []) {
@@ -42,5 +48,4 @@ final class Database {
     public function __destruct() {
         $this->connection = null;
     }
-
 }

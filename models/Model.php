@@ -13,5 +13,4 @@ abstract class Model {
     abstract public function update($vo);
 
     abstract public function delete($vo);
-
 }

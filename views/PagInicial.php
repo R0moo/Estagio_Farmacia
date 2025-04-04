@@ -11,11 +11,11 @@
     <nav>
         <h1>Farmácia Verde</h1>
         <div class="links">
+            
+            <a href="#">Home</a>
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
-            <a href="#">Home</a>
-            <a href="Postagens.php">Postagens</a>
             <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
@@ -43,7 +43,7 @@
                 <?php echo $projeto->getId(); ?>
             <?php }  echo $projeto->getTitulo(); ?></h3>
             <br>
-            <?php if($logado){ ?>
+            <?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                 <div class="acoes">
                     <a href="Projeto.php?id= <?php echo $projeto->getId();?>" >Editar</a>
                     <br>

@@ -10,34 +10,26 @@ use Model\VO\ProjetosVO;
 final class PostagensController extends Controller {
 
     public function list() {
-        if(isset($_POST)){
-            if(isset($_SESSION['projeto'])){
-                unset( $_SESSION['projeto'] );
-            }else{
-            session_start();
+        if (!emp    ty($_POST)) {
             $_SESSION['projeto'] = $_POST;
-            }
         }
+        $project = $_SESSION['projeto'] ?? null;
 
         $ProjetosModel = new ProjetosModel();
-
         $model = new PostagensModel();
-        $data = $model->selectPostsPerProjects(new PostagensVO());
+        $data = $model->selectAll(new PostagensVO());
 
-        if(isset($_SESSION["usuario"])){
-            $logged = true;
-        }else{
-            $logged = false;
-        }
+        $logged = isset($_SESSION["usuario"]);
 
-            $this->loadView("projeto_template", [
-                "Postagens" => $data,
-                "logado" => $logged
-            ]);  
+        $this->loadView("projeto_template", [
+            "Postagens" => $data,
+            "logado" => $logged
+        ]);  
     }
 
     public function form() {
         $id = $_GET["id"] ?? 0;
+        $ProjetoId = $_SESSION['projeto']['id'] ?? null; // Verificar se ProjetoId está definido
 
         if(!empty($id)) {
             $model = new PostagensModel();
@@ -45,7 +37,6 @@ final class PostagensController extends Controller {
             $Postagem = $model->selectOne($vo);
         } else {
             $Postagem = new PostagensVO();
-            $ProjetoId = $_SESSION['projeto']['id'];
         }
         $this->loadView("formPostagens", [
             "Postagem" => $Postagem,
@@ -57,10 +48,11 @@ final class PostagensController extends Controller {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
 
-
-         if (!empty($_FILES['foto']['name'])) {
+        if (!empty($_FILES['foto']['name'])) {
             $nomeArquivo = $this->uploadFiles($_FILES['foto']); 
-            unlink("uploads/" . $fotoAtual);
+            if ($fotoAtual) {
+                unlink("uploads/" . $fotoAtual);
+            }
         } else {
             $nomeArquivo = $fotoAtual;
         }
@@ -80,9 +72,11 @@ final class PostagensController extends Controller {
     public function remove() {
         $vo = new PostagensVO($_GET["id"], '', '', $_GET['ft']);
         $model = new PostagensModel();
-        unlink("uploads/" . $vo->getFoto());
+        if ($vo->getFoto()) {
+            unlink("uploads/" . $vo->getFoto());
+        }
         $result = $model->delete($vo);
-        
 
         $this->redirect("Template.php");
-    }}
+    }
+}

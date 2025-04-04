@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 04:00 PM
+-- Generation Time: Apr 04, 2025 at 08:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,6 +35,16 @@ CREATE TABLE `postagens` (
   `projeto_id` int(11) NOT NULL,
   `data_criacao` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `postagens`
+--
+
+INSERT INTO `postagens` (`id`, `titulo`, `descricao`, `foto`, `projeto_id`, `data_criacao`) VALUES
+(21, 'Postagem 1', 'um resgate das tradicionais receitas probióticas do Leste Asiático', '67f01760645cf.png', 4, '2025-04-04 00:00:00'),
+(22, 'Naturologia', 'monhada', '67f0185149ac2.png', 3, '2025-04-04 00:00:00'),
+(23, 'Cozinha do Farmácia', 'monhada', '67f019f98a48f.png', 3, '2025-04-04 00:00:00'),
+(24, 'SDADSA', 'sssss', '67f01a66a5946.png', 4, '2025-04-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -116,7 +126,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `postagens`
 --
 ALTER TABLE `postagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `projetos`

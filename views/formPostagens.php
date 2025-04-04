@@ -12,7 +12,7 @@
     <form action="salvarPostagem.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Postagem->getId(); ?>">
         <input type="hidden" name="foto_atual" value="<?= $Postagem->getFoto() ?>">
-        <input type="hidden" name="projeto_id" value="<?= $Postagem->getProjetoId() ?>">
+        <input type="hidden" name="projeto_id" value="<?= $_SESSION['projeto']['id'] ?>">
         
         
         <label for="foto">Título: </label>

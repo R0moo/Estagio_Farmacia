@@ -15,7 +15,6 @@
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
             <a href="index.php">Home</a>
-            <a href="#.php">Postagens</a>
             <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>

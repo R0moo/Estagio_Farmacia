@@ -22,7 +22,7 @@ final class LoginController extends Controller {
 
         if(empty($result)){
             $this->redirect("login.php");
-        }else {
+        } else {
             $this->redirect("index.php");
         }
     }

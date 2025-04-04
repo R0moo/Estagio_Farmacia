@@ -8,14 +8,13 @@
 </head>
 <body>
     <?php ?>
-    <nav style="background-color: <?php echo $_POST['cor1']; ?>">
-        <h1><?php echo $_POST['titulo']; ?></h1>
+    <nav style="background-color: <?php echo $_SESSION['projeto']['cor1']; ?>">
+        <h1><?php echo $_SESSION['projeto']['titulo']; ?></h1>
         <div class="links">
+            <a href="index.php">Home</a>
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
-            <a href="index.php">Home</a>
-            <a href="Postagens.php">Postagens</a>
             <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
@@ -23,7 +22,7 @@
     </nav>
 
     <h2>Sobre o Projeto</h2>
-    <p><?php echo $_POST['descricao'];?></p>
+    <p><?php echo $_SESSION['projeto']['descricao'];?></p>
 
     <hr>
 
@@ -33,7 +32,8 @@
             <?php }?>
     <div class="postagens">    
 <?php foreach($Postagens as $postagem) { ?>
-    <div class="card">
+    <?php if($postagem->getProjetoId() == $_SESSION['projeto']['id']){ ?>
+        <div class="card">
         <?php if ($postagem->getFoto()) { ?>
             <img src='uploads/<?php echo $postagem->getFoto(); ?>' alt='<?php echo $postagem->getTitulo(); ?>'>
             <?php } ?>
@@ -43,7 +43,7 @@
             <?php }  echo $postagem->getTitulo(); ?></h3>
             <p><?php echo $postagem->getDescricao(); ?></p>
             <br>
-            <?php if($logado){ ?>
+            <?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                 <div class="acoes">
                     <a href="Postagem.php?id= <?php echo $postagem->getId();?>" >Editar</a>
                     <br>
@@ -52,6 +52,8 @@
             <?php } ?>
     </div>
 
+   <?php } ?>
+    
     <?php } ?>
 </div>
 </body>
