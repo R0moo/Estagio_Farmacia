@@ -16,6 +16,7 @@
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
+            
             <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
@@ -27,32 +28,34 @@
                <a href="Projeto.php" class="btn">Inserir novo</a>  
             <?php }?>
     <div class="projetos">    
-<?php foreach($Projetos as $projeto) { ?>
-    <form action="Template.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $projeto->getId(); ?>">
-    <input type="hidden" name="titulo" value="<?php echo $projeto->getTitulo(); ?>">
-    <input type="hidden" name="descricao" value="<?php echo $projeto->getDescricao(); ?>">
-    <input type="hidden" name="cor1" value="<?php echo $projeto->getCor1(); ?>">
-    <input type="hidden" name="cor2" value="<?php echo $projeto->getCor2(); ?>">
-    <button type="submit" class="card">
+    <?php foreach($Projetos as $projeto) { ?>
+        <div class="card-container">
+        <a class="card" href="Template.php?id=<?php echo $projeto->getId(); ?>">
+
         <?php if ($projeto->getCapa()) { ?>
             <img src='uploads/<?php echo $projeto->getCapa(); ?>' alt='<?php echo $projeto->getTitulo(); ?>'>
+        <?php } ?>
+
+        <br>
+        <h3>
+            <?php if($logado){ ?>
+                <?php echo $projeto->getId(); ?> -
             <?php } ?>
-            <br>
-            <h3><?php if($logado){ ?>
-                <?php echo $projeto->getId(); ?>
-            <?php }  echo $projeto->getTitulo(); ?></h3>
-            <br>
-            <?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-                <div class="acoes">
-                    <a href="Projeto.php?id= <?php echo $projeto->getId();?>" >Editar</a>
-                    <br>
-                    <a href="excluirProjetos.php?id=<?php echo $projeto->getId();?>">Deletar</a>
-                </div>
-            <?php } ?>
-    </button>
-    </form>
-    <?php } ?>
+            <?php echo $projeto->getTitulo(); ?>
+        </h3>
+        <br>
+        </a>
+        <?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
+            <div class="acoes">
+                <a href="Projeto.php?id=<?php echo $projeto->getId(); ?>">Editar</a>
+                <br>
+                <a href="excluirProjetos.php?id=<?php echo $projeto->getId(); ?>">Deletar</a>
+            </div>
+        <?php } ?>
+
+    
+<?php } ?>
+
 </div>
 </body>
 </html>

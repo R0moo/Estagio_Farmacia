@@ -11,8 +11,8 @@
     <h1>Cadastro de Postagens</h1>
     <form action="salvarPostagem.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Postagem->getId(); ?>">
-        <input type="hidden" name="foto_atual" value="<?= $Postagem->getFoto() ?>">
-        <input type="hidden" name="projeto_id" value="<?= $_SESSION['projeto']['id'] ?>">
+        <input type="hidden" name="foto_atual" value="<?php echo $Postagem->getFoto() ?>">
+        <input type="hidden" name="projeto_id" value="<?php echo $_SESSION['projeto']->getId() ?>">
         
         
         <label for="foto">Título: </label>

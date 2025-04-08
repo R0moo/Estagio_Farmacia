@@ -10,26 +10,35 @@ use Model\VO\ProjetosVO;
 final class PostagensController extends Controller {
 
     public function list() {
-        if (!emp    ty($_POST)) {
-            $_SESSION['projeto'] = $_POST;
+        if (!empty($_GET['id'])) {
+            $idProjeto = $_GET['id'];
+    
+            $projetoVO = new ProjetosVO();
+            $projetoVO->setId($idProjeto);
+    
+            $modelProjeto = new ProjetosModel();
+            $projetoCompleto = $modelProjeto->selectOne($projetoVO);
+
+            $_SESSION['projeto'] = $projetoCompleto;
         }
+    
         $project = $_SESSION['projeto'] ?? null;
-
-        $ProjetosModel = new ProjetosModel();
-        $model = new PostagensModel();
-        $data = $model->selectAll(new PostagensVO());
-
+    
+        $modelPostagens = new PostagensModel();
+        $data = $modelPostagens->selectAll(new PostagensVO());
+    
         $logged = isset($_SESSION["usuario"]);
-
+    
         $this->loadView("projeto_template", [
             "Postagens" => $data,
-            "logado" => $logged
-        ]);  
+            "logado" => $logged,
+            "projeto" => $project
+        ]);
     }
 
     public function form() {
         $id = $_GET["id"] ?? 0;
-        $ProjetoId = $_SESSION['projeto']['id'] ?? null; // Verificar se ProjetoId está definido
+        $ProjetoId = $_SESSION['projeto']->getId() ?? null; // Verificar se ProjetoId está definido
 
         if(!empty($id)) {
             $model = new PostagensModel();

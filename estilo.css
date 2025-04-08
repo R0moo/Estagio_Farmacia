@@ -43,6 +43,8 @@ img{
     max-width: 250px;
     flex-wrap: wrap;
     margin: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 

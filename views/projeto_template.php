@@ -8,8 +8,8 @@
 </head>
 <body>
     <?php ?>
-    <nav style="background-color: <?php echo $_SESSION['projeto']['cor1']; ?>">
-        <h1><?php echo $_SESSION['projeto']['titulo']; ?></h1>
+    <nav style="background-color: <?php echo $_SESSION['projeto']->getCor1(); ?>">
+        <h1><?php echo $_SESSION['projeto']->getTitulo(); ?></h1>
         <div class="links">
             <a href="index.php">Home</a>
             <?php if(!$logado){ ?>
@@ -22,7 +22,7 @@
     </nav>
 
     <h2>Sobre o Projeto</h2>
-    <p><?php echo $_SESSION['projeto']['descricao'];?></p>
+    <p><?php echo $_SESSION['projeto']->getDescricao();?></p>
 
     <hr>
 
@@ -32,7 +32,7 @@
             <?php }?>
     <div class="postagens">    
 <?php foreach($Postagens as $postagem) { ?>
-    <?php if($postagem->getProjetoId() == $_SESSION['projeto']['id']){ ?>
+    <?php if($postagem->getProjetoId() == $_SESSION['projeto']->getId()){ ?>
         <div class="card">
         <?php if ($postagem->getFoto()) { ?>
             <img src='uploads/<?php echo $postagem->getFoto(); ?>' alt='<?php echo $postagem->getTitulo(); ?>'>
