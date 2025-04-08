@@ -45,7 +45,6 @@ final class ReceitasModel extends Model {
             ":categoria" => $vo->getCategoria(),
             ":imagem" => $vo->getImagem(),
             ":data_criacao" => $vo->getDataCriacao(),
-            ":cor2" => $vo->getCor2(),
         ];
     
         return $db->execute($query, $binds);

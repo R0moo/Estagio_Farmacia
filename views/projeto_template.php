@@ -12,6 +12,7 @@
         <h1><?php echo $_SESSION['projeto']->getTitulo(); ?></h1>
         <div class="links">
             <a href="index.php">Home</a>
+            <a href="Receitas.php">Receitas</a>
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>

@@ -12,6 +12,7 @@
         <h1>Farmácia Verde</h1>
         <div class="links">
             <a href="index.php">Home</a>
+            <a href="Receitas.php">Receitas</a>
             <a href="#">Usuarios</a>
             <a href="logout.php">Sair</a> 
         </div>

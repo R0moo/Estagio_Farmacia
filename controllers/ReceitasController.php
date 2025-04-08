@@ -38,7 +38,7 @@ final class ReceitasController extends Controller {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
         $ingredientesArray = $_POST['ingredientes'];
-        $ingredientes = implode(", ", $ingredientesArray);
+        $ingredientes = rtrim(implode(", ", $ingredientesArray), ',') ;
 
         if (!empty($_FILES['imagem']['name'])) {
             $nomeArquivo = $this->uploadFiles($_FILES['imagem']); 
