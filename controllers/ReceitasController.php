@@ -37,8 +37,6 @@ final class ReceitasController extends Controller {
     public function save() {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
-        $ingredientesArray = $_POST['ingredientes'];
-        $ingredientes = rtrim(implode(", ", $ingredientesArray), ',') ;
 
         if (!empty($_FILES['imagem']['name'])) {
             $nomeArquivo = $this->uploadFiles($_FILES['imagem']); 
@@ -49,7 +47,7 @@ final class ReceitasController extends Controller {
             $nomeArquivo = $fotoAtual;
         }
 
-        $vo = new ReceitasVO($id, $_POST["titulo"], $_POST["descricao"], $ingredientes, $_POST["modo_preparo"], $_POST["tempo_preparo"], $_POST["rendimento"], $_POST["categoria"], $nomeArquivo, $_POST["data_criacao"]);
+        $vo = new ReceitasVO($id, $_POST["titulo"], $_POST["descricao"], $_POST['ingredientes'], $_POST["modo_preparo"], $_POST["tempo_preparo"], $_POST["rendimento"], $_POST["categoria"], $nomeArquivo, $_POST["data_criacao"]);
         $model = new ReceitasModel();
 
         if(empty($id)) {

@@ -34,10 +34,19 @@
             <img src='uploads/<?php echo $receita->getImagem(); ?>' alt='<?php echo $receita->getTitulo(); ?>'>
             <?php } ?>
             <br>
-            <h3><?php if($logado){ ?>
+            <h3><?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                 <?php echo $receita->getId(); ?>
             <?php }  echo $receita->getTitulo(); ?></h3>
             <p><?php echo $receita->getDescricao(); ?></p>
+            <br>
+            <?php $ingredientes = explode(',', $receita->getIngredientes()); ?>
+            <p>Ingredientes:</p>
+            <ul>
+                <?php foreach($ingredientes as $ingrediente){ ?>
+                    <li> <?php echo $ingrediente; ?> </li>
+                <?php } ?>
+            </ul> <br>
+            <p>Modo de preparo: <?php echo $receita->getModoPreparo(); ?></p>
             <br>
             <?php if($logado){ ?>
                 <div class="acoes">

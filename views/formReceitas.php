@@ -21,14 +21,11 @@
         <input type="textarea" name="descricao" value="<?php echo $Receita->getDescricao(); ?>" placeholder="Descrição:">
         <br>
         <label for="ingredientes">Ingredientes: </label><br>
-        <div id="ingredientes">
-        <input type="text" name="ingredientes[]" value="<?php echo $Receita->getIngredientes(); ?>" placeholder="Ex: 2 ovos" required><br>
-        </div>
-        <button type="button" onclick="adicionarIngrediente()">+ Adicionar ingrediente</button>
+        <textarea name="ingredientes" value="<?php echo $Receita->getIngredientes(); ?>" placeholder="Ex: 2 ovos, SEPARE POR VIRGULAS" required><?php echo $Receita->getIngredientes(); ?></textarea><br>
         <br>
         <br>
         <label for="modo_preparo">Modo de Preparo: </label>
-        <textarea name="modo_preparo" value="<?php echo $Receita->getModoPreparo(); ?>" placeholder="Modo de preparo:"></textarea>
+        <textarea name="modo_preparo" value="<?php echo $Receita->getModoPreparo(); ?>" placeholder="Modo de preparo:"><?php echo $Receita->getModoPreparo(); ?></textarea>
         <br>
         <label for="tempo_preparo">Tempo de Preparo (em minutos): </label>
         <input type="number" name="tempo_preparo" value="<?php echo $Receita->getTempoPreparo(); ?>" placeholder="Tempo de preparo:">
@@ -51,16 +48,6 @@
     </form>
 </div>
 
-<script>
-function adicionarIngrediente() {
-    const container = document.getElementById("ingredientes");
-    const input = document.createElement("input");
-    input.type = "text";
-    input.name = "ingredientes[]";
-    input.placeholder = "Ex: 1 xícara de farinha";
-    container.appendChild(input);
-    container.appendChild(document.createElement("br"));
-}
-</script>
+
 </body>
 </html>
