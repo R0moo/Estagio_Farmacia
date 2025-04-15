@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+<head class="header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Farmácia Verde</title>
+    <title>Página de Login - Farmácia Verde</title>
     <link rel="stylesheet" href="estilo.css">
-    
+    <h1 class="farmaciaVerde_titulo"><p class="farmaciaTitulo">Farmácia</p> Verde</h1>
+    <h4 class="header_description">Políticas em saúde</h4>
+
 </head>
 <body class="login">
-    <div class="container">
-    <h1>Login</h1>
+    <div class="container_login">
+    <h1 class="Logar">Logar</h1>
     <form action="fazerLogin.php" method="post">
-        <input type="text" name="login" placeholder="Login:">
+        <label class="label_usuario" for="login">Usuário</label>
+        <input type="text" name="login" placeholder="Insira seu usuário aqui">
         <br>
-        <input type="password" name="senha" placeholder="Senha:">
+        <label class="label_senha" for="senha">Senha</label>
+        <input type="password" name="senha" placeholder="Insira sua senha aqui">
+        <a class="recupera_Senha" href="recuperaSenha.php">Esqueceu sua senha? Clique aqui.</a>
         <br>
-        <button type="submit">Enviar</button>
+        <button class="btn_Login" type="submit">Entrar</button>
+        <br>
+        <br>
+        <a class="solicita_Acesso" href="solicitarAcesso.php">Não possui acesso? <br> Solicitar cadastro.</a>
     </form>
     <div class="acordeao">
-                <h3>Informações:</h3>
-                <ul>
-                    <li>Por padrão, seu login é seu email e sua senha é seu CPF </li>
-                    <li><strong>! Você pode alterar esses dados posteriormente !</strong></li>
-                </ul>
+                
             </div>
 </div>
 
