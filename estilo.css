@@ -1,12 +1,23 @@
-*{padding: 0; margin: 0; box-sizing: border-box;}
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 
-body{
-    background-color: whitesmoke;
+body {
+    background-color: #D4ECC7;
     height: 100%;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-nav{
+
+nav {
     display: flex;
     text-align: center;
     align-items: center;
@@ -17,20 +28,105 @@ nav{
     border-bottom: 1px solid black;
 }
 
-.postagens, .usuarios, .categorias, .projetos{
-    display: flex;
-    
+.header {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
-h2{
+
+.postagens,
+.usuarios,
+.categorias,
+.projetos {
+    display: flex;
+
+}
+
+.btn_Login {
+    color: white;
+    background-color: #5A8457;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    height: 35px;
+    width: 100px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    transition: background 0.3s ease;
+}
+
+.btn_Login:hover {
+    cursor: pointer;
+    background-color: #41613f;
+}
+
+.farmaciaVerde_titulo {
+    color: #5A8457;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 2px 2px 1px #3e693e;
+}
+
+.farmaciaTitulo {
+    color: white;
+}
+
+.header_description {
+    color: #5A8457;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: italic;
+}
+
+.Logar {
+    color: #5A8457;
+}
+
+.label_senha {
+    color: #5A8457;
+}
+
+.label_usuario {
+    color: #5A8457;
+}
+
+.recupera_Senha {
+    color: #5A8457;
+}
+
+.solicita_Acesso {
+    color: #5A8457;
+}
+
+.container_login input[type="text"],
+.container_login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    font-style: italic;
+    font-size: 13px;
+    background-color: #ECECEC;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+}
+
+h2 {
     margin: 10px;
     font-size: 28pt;
 }
-img{
+
+img {
     max-width: 200px;
     min-height: 200px;
 }
 
-.card{
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,27 +144,47 @@ img{
 }
 
 
-.card>h3{
+.card>h3 {
     font-size: 25pt;
 }
-.card>h4{
+
+.card>h4 {
     font-size: 20pt;
 }
 
 
-.login, .FormProdutos, .FormCategorias, .FormUsuarios, .container{
+.login,
+.FormProdutos,
+.FormCategorias,
+.FormUsuarios,
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.container{
-    background-color: white;
+.container_login {
+    background-color: #FAF8F8;
     padding: 30px;
-    box-shadow: -3px 3px 5px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
 }
-form{
+
+.container_login label {
+    display: block;
+    margin-bottom: 5px;
+    color: #3e693e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+form {
     margin: 10px;
     display: flex;
     align-items: center;
@@ -76,13 +192,18 @@ form{
     flex-direction: column;
 }
 
-.btn{
+.btn {
     margin: 10px;
 }
-.btns, .btn{
+
+.btns,
+.btn {
     margin-top: 10px;
 }
-.btns>a, .btns>button, .btn{
+
+.btns>a,
+.btns>button,
+.btn {
     text-decoration: none;
     border: 1px solid black;
     border-radius: 3px;
@@ -92,7 +213,20 @@ form{
     padding: 5px;
     background-color: aliceblue;
 }
-.btns>a:hover, .btns>button:hover, .btn:hover{
+
+.btns>a:hover,
+.btns>button:hover,
+.btn:hover {
     cursor: pointer;
     background-color: rgb(209, 233, 255);
 }
+
+@media (max-width: 480px) {
+    header h1 {
+      font-size: 32px;
+    }
+  
+    .container_login {
+      padding: 20px;
+    }
+  }
