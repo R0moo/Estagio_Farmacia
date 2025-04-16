@@ -14,10 +14,10 @@
 
             <a href="index.php">Home</a>
             <a href="#">Receitas</a>
-            <a href="Usuarios.php">Usuarios</a>
             <?php if(!$logado){ ?>
-                <a href="login.php">Login</a> 
+                <a href="login.php">Login</a>
             <?php }else{ ?>
+                <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
         </div>

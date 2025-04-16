@@ -13,6 +13,7 @@
         <div class="links">
             <a href="index.php">Home</a>
             <a href="Receitas.php">Receitas</a>
+            <a href="Cursos.php">Cursos</a>
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
