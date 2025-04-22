@@ -11,10 +11,10 @@ final class CursosController extends Controller {
         if (!empty($_GET['id'])) {
             $idProjeto = $_GET['id'];
     
-            $projetoVO = new ProjetosVO();
+            $projetoVO = new CursosVO();
             $projetoVO->setId($idProjeto);
     
-            $modelProjeto = new ProjetosModel();
+            $modelProjeto = new CursosModel();
             $projetoCompleto = $modelProjeto->selectOne($projetoVO);
 
             $_SESSION['projeto'] = $projetoCompleto;
@@ -27,7 +27,7 @@ final class CursosController extends Controller {
     
         $logged = isset($_SESSION["usuario"]);
     
-        $this->loadView("projeto_template", [
+        $this->loadView("listaCursos", [
             "Cursos" => $data,
             "logado" => $logged,
             "projeto" => $project
@@ -36,18 +36,16 @@ final class CursosController extends Controller {
 
     public function form() {
         $id = $_GET["id"] ?? 0;
-        $ProjetoId = $_SESSION['projeto']->getId() ?? null; // Verificar se ProjetoId está definido
 
         if(!empty($id)) {
             $model = new CursosModel();
             $vo = new CursosVO($id);
-            $Postagem = $model->selectOne($vo);
+            $Curso = $model->selectOne($vo);
         } else {
-            $Postagem = new CursosVO();
+            $Curso = new CursosVO();
         }
         $this->loadView("formCursos", [
-            "Postagem" => $Postagem,
-            "ProjetoId" => $ProjetoId
+            "Curso" => $Curso
         ]);
     }
 
@@ -64,7 +62,7 @@ final class CursosController extends Controller {
             $nomeArquivo = $fotoAtual;
         }
 
-        $vo = new CursosVO($id, $_POST["titulo"], $_POST["descricao"], $nomeArquivo, $_POST["projeto_id"], $_POST["data_criacao"]);
+        $vo = new CursosVO($id, $_POST["estudantes_id"], $_POST["avaliacao_id"],$_POST["titulo"], $_POST["resumo"], $_POST["vagas"], $_POST["materiais"], $_POST["carga_horaria"], $_POST["data_inicio"], $_POST["data_fim"], $nomeArquivo );
         $model = new CursosModel();
 
         if(empty($id)) {
@@ -73,7 +71,7 @@ final class CursosController extends Controller {
             $result = $model->update($vo);
         }
 
-        $this->redirect("Template.php");
+        $this->redirect("Cursos.php");
     }
 
     public function remove() {
@@ -84,6 +82,6 @@ final class CursosController extends Controller {
         }
         $result = $model->delete($vo);
 
-        $this->redirect("Template.php");
+        $this->redirect("Cursos.php");
     }
 }
