@@ -30,6 +30,17 @@
             <button type="button" class="nav_button4" href="listaCursos.php">Cursos</button>
             </div>
             
+            <a href="#">Home</a>
+            <a href="Receitas.php">Receitas</a>
+            <a href="Cursos.php">Cursos</a>
+            <?php if(!$logado){ ?>
+                <a href="login.php">Login</a> 
+            <?php }else{ ?>
+
+            <a href="Usuarios.php">Usuarios</a>
+            <a href="logout.php">Sair</a> 
+            <?php } ?>
+        </div>
     </nav>
             </div>
     

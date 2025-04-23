@@ -14,7 +14,7 @@ final class CursosModel extends Model {
         $arrayDados = [];
 
         foreach($data as $row) {
-            $vo = new CursosVO($row["id"], $row["avaliacao_id"], $row["titulo"], $row["resumo"], $row["vagas"], $row["materiais"], $row["carga_horaria"], $row["data_inicio"], $row["data_fim"], $row["imagem"]);
+            $vo = new CursosVO($row["id"], $row["titulo"], $row["resumo"], $row["vagas"], $row["materiais"], $row["carga_horaria"], $row["data_inicio"], $row["data_fim"], $row["imagem"]);
             array_push($arrayDados, $vo);
         }
 
@@ -27,16 +27,15 @@ final class CursosModel extends Model {
         $binds = [":id" => $vo->getId()];
         $data = $db->select($query, $binds);
 
-        return new CursosVO($data[0]["id"], $data[0]["avaliacao_id"], $data[0]["titulo"], $data[0]["resumo"], $data[0]["vagas"], $data[0]["materiais"], $data[0]["carga_horaria"], $data[0]["data_inicio"], $data[0]["data_fim"], $data[0]["imagem"]);
+        return new CursosVO($data[0]["id"], $data[0]["titulo"], $data[0]["resumo"], $data[0]["vagas"], $data[0]["materiais"], $data[0]["carga_horaria"], $data[0]["data_inicio"], $data[0]["data_fim"], $data[0]["imagem"]);
     }
 
     public function insert($vo) {
         $db = new Database();
         
     
-        $query = "INSERT INTO Cursos (avaliacao_id, titulo, resumo, vagas, materiais, carga_horaria, data_inicio, data_fim, imagem) VALUES (:avaliacao_id, :titulo, :resumo, :vagas, :materiais, :carga_horaria, :data_inicio, :data_fim, :imagem)";
+        $query = "INSERT INTO Cursos (titulo, resumo, vagas, materiais, carga_horaria, data_inicio, data_fim, imagem) VALUES (:titulo, :resumo, :vagas, :materiais, :carga_horaria, :data_inicio, :data_fim, :imagem)";
         $binds = [
-            ":avaliacao_id" => $vo->getAvaliacaoId(),
             ":titulo" => $vo->getTitulo(),
             ":resumo" => $vo->getResumo(),
             ":vagas" => $vo->getVagas(),
@@ -55,9 +54,8 @@ final class CursosModel extends Model {
         $db = new Database();
 
         
-            $query = "UPDATE Cursos SET avaliacao_id = :avaliacao_id, titulo = :titulo, resumo = :resumo, vagas = :vagas, materiais = :materiais, carga_horaria = :carga_horaria, data_inicio = :data_inicio, data_fim = :data_fim, imagem = :imagem WHERE id = :id";
+            $query = "UPDATE Cursos SET titulo = :titulo, resumo = :resumo, vagas = :vagas, materiais = :materiais, carga_horaria = :carga_horaria, data_inicio = :data_inicio, data_fim = :data_fim, imagem = :imagem WHERE id = :id";
             $binds = [
-                "avaliacao_id" => $vo->getAvaliacaoId(),
                 ":titulo" => $vo->getTitulo(),
                 ":resumo" => $vo->getResumo(),
                 ":vagas" => $vo->getVagas(),

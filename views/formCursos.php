@@ -12,13 +12,13 @@
     <form action="salvarCursos.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Curso->getId(); ?>">
         <input type="hidden" name="foto_atual" value="<?php echo $Curso->getImagem() ?>">
-        <input type="hidden" name="avaliacao_id" value="<?php echo $Curso->getAvaliacaoId() ?>">
         
         <label for="titulo">Título: </label>
         <input type="text" name="titulo" value="<?php echo $Curso->getTitulo(); ?>" placeholder="Título:">
         <br>
         <label for="resumo">Resumo: </label>
-        <textarea name="resumo" value="<?php echo $Curso->getResumo(); ?>" placeholder="Resumo:"></textarea>
+        <textarea name="resumo" placeholder="Resumo:"><?php echo $Curso->getResumo(); ?></textarea>
+        <br>
         <label for="vagas">Vagas: </label>
         <input type="number" name="vagas" value="<?php echo $Curso->getVagas(); ?>" placeholder="Vagas:">
         <br>

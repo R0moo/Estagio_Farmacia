@@ -42,14 +42,14 @@ final class CursosController extends Controller {
     
         $nomeArquivo = $fotoAtual;
     
-        if (!empty($_FILES['foto']['name'])) {
-            $extensao = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
+        if (!empty($_FILES['imagem']['name'])) {
+            $extensao = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
     
             if (in_array($extensao, $tiposPermitidos)) {
-                $nomeArquivo = uniqid('foto_') . '.' . $extensao;
+                $nomeArquivo = uniqid('imagem_') . '.' . $extensao;
                 $destino = $pasta . $nomeArquivo;
     
-                if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
+                if (move_uploaded_file($_FILES['imagem']['tmp_name'], $destino)) {
                     if ($fotoAtual && file_exists($pasta . $fotoAtual)) {
                         unlink($pasta . $fotoAtual);
                     }
@@ -88,7 +88,7 @@ final class CursosController extends Controller {
 
         $stringMateriais = implode(',', $nomesMateriais);
 
-        $vo = new CursosVO($id, $_POST["avaliacao_id"],$_POST["titulo"], $_POST["resumo"], $_POST["vagas"], $stringMateriais, $_POST["carga_horaria"], $_POST["data_inicio"], $_POST["data_fim"], $nomeArquivo );
+        $vo = new CursosVO($id, $_POST["titulo"], $_POST["resumo"], $_POST["vagas"], $stringMateriais, $_POST["carga_horaria"], $_POST["data_inicio"], $_POST["data_fim"], $nomeArquivo );
         $model = new CursosModel();
 
         if(empty($id)) {
@@ -103,8 +103,8 @@ final class CursosController extends Controller {
     public function remove() {
         $vo = new CursosVO($_GET["id"], '', '', $_GET['ft']);
         $model = new CursosModel();
-        if ($vo->getFoto()) {
-            unlink("uploads/" . $vo->getFoto());
+        if ($vo->getImagem()) {
+            unlink("uploads/" . $vo->getImagem());
         }
         $result = $model->delete($vo);
 
