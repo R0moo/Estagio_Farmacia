@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2025 at 09:02 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Tempo de geração: 23-Abr-2025 às 20:50
+-- Versão do servidor: 10.4.28-MariaDB
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,18 +18,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `catalago_de_produtos`
+-- Banco de dados: `catalago_de_produtos`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avaliacoes`
+-- Estrutura da tabela `avaliacoes`
 --
 
 CREATE TABLE `avaliacoes` (
   `id` int(11) NOT NULL,
   `estudante_id` int(11) NOT NULL,
+  `curso_id` int(11) NOT NULL,
   `cc_1` tinyint(4) DEFAULT NULL CHECK (`cc_1` between 1 and 5),
   `cc_2` tinyint(4) DEFAULT NULL CHECK (`cc_2` between 1 and 5),
   `cc_3` tinyint(4) DEFAULT NULL CHECK (`cc_3` between 1 and 5),
@@ -63,13 +64,11 @@ CREATE TABLE `avaliacoes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cursos`
+-- Estrutura da tabela `cursos`
 --
 
 CREATE TABLE `cursos` (
   `id` int(11) NOT NULL,
-  `estudantes_id` int(11) NOT NULL,
-  `avaliacao_id` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `resumo` varchar(100) NOT NULL,
   `vagas` int(11) NOT NULL,
@@ -80,10 +79,17 @@ CREATE TABLE `cursos` (
   `imagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `titulo`, `resumo`, `vagas`, `materiais`, `carga_horaria`, `data_inicio`, `data_fim`, `imagem`) VALUES
+(4, 'Ruptura', 'Em \"Ruptura\", uma empresa chamada Lumon Industries utiliza um procedimento experimental que separa p', 30, '', 30, '2025-05-04', '2222-02-22', 'imagem_68092ac84d8f1.jpg');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estudantes`
+-- Estrutura da tabela `estudantes`
 --
 
 CREATE TABLE `estudantes` (
@@ -98,7 +104,7 @@ CREATE TABLE `estudantes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postagens`
+-- Estrutura da tabela `postagens`
 --
 
 CREATE TABLE `postagens` (
@@ -111,7 +117,7 @@ CREATE TABLE `postagens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `postagens`
+-- Extraindo dados da tabela `postagens`
 --
 
 INSERT INTO `postagens` (`id`, `titulo`, `descricao`, `foto`, `projeto_id`, `data_criacao`) VALUES
@@ -125,7 +131,7 @@ INSERT INTO `postagens` (`id`, `titulo`, `descricao`, `foto`, `projeto_id`, `dat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `projetos`
+-- Estrutura da tabela `projetos`
 --
 
 CREATE TABLE `projetos` (
@@ -138,7 +144,7 @@ CREATE TABLE `projetos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `projetos`
+-- Extraindo dados da tabela `projetos`
 --
 
 INSERT INTO `projetos` (`id`, `titulo`, `descricao`, `capa`, `cor1`, `cor2`) VALUES
@@ -149,7 +155,7 @@ INSERT INTO `projetos` (`id`, `titulo`, `descricao`, `capa`, `cor1`, `cor2`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `receitas`
+-- Estrutura da tabela `receitas`
 --
 
 CREATE TABLE `receitas` (
@@ -166,7 +172,7 @@ CREATE TABLE `receitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `receitas`
+-- Extraindo dados da tabela `receitas`
 --
 
 INSERT INTO `receitas` (`id`, `titulo`, `descricao`, `ingredientes`, `modo_preparo`, `tempo_preparo`, `rendimento`, `categoria`, `imagem`, `data_criacao`) VALUES
@@ -177,7 +183,7 @@ INSERT INTO `receitas` (`id`, `titulo`, `descricao`, `ingredientes`, `modo_prepa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -191,7 +197,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `login`, `senha`, `nivel`, `email`, `cpf`, `ocupacao`) VALUES
@@ -199,52 +205,51 @@ INSERT INTO `usuarios` (`id`, `login`, `senha`, `nivel`, `email`, `cpf`, `ocupac
 (9, 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', '3', 'aluno@gmail.com', '00000000001', 'Aluno');
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `avaliacoes`
+-- Índices para tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `estudante_id` (`estudante_id`);
+  ADD KEY `estudante_id` (`estudante_id`),
+  ADD KEY `fk_avaliacoes_curso` (`curso_id`);
 
 --
--- Indexes for table `cursos`
+-- Índices para tabela `cursos`
 --
 ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `estudantes_id` (`estudantes_id`),
-  ADD KEY `fk_avaliacao` (`avaliacao_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `estudantes`
+-- Índices para tabela `estudantes`
 --
 ALTER TABLE `estudantes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `curso_id` (`curso_id`);
 
 --
--- Indexes for table `postagens`
+-- Índices para tabela `postagens`
 --
 ALTER TABLE `postagens`
   ADD PRIMARY KEY (`id`),
   ADD KEY `projeto_id` (`projeto_id`);
 
 --
--- Indexes for table `projetos`
+-- Índices para tabela `projetos`
 --
 ALTER TABLE `projetos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `receitas`
+-- Índices para tabela `receitas`
 --
 ALTER TABLE `receitas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
@@ -252,76 +257,70 @@ ALTER TABLE `usuarios`
   ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `avaliacoes`
+-- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `cursos`
+-- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `estudantes`
+-- AUTO_INCREMENT de tabela `estudantes`
 --
 ALTER TABLE `estudantes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `postagens`
+-- AUTO_INCREMENT de tabela `postagens`
 --
 ALTER TABLE `postagens`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `projetos`
+-- AUTO_INCREMENT de tabela `projetos`
 --
 ALTER TABLE `projetos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `receitas`
+-- AUTO_INCREMENT de tabela `receitas`
 --
 ALTER TABLE `receitas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `avaliacoes`
+-- Limitadores para a tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
-  ADD CONSTRAINT `avaliacoes_ibfk_2` FOREIGN KEY (`estudante_id`) REFERENCES `estudantes` (`id`);
+  ADD CONSTRAINT `avaliacoes_ibfk_2` FOREIGN KEY (`estudante_id`) REFERENCES `estudantes` (`id`),
+  ADD CONSTRAINT `fk_avaliacoes_curso` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`);
 
 --
--- Constraints for table `cursos`
---
-ALTER TABLE `cursos`
-  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`estudantes_id`) REFERENCES `estudantes` (`id`),
-  ADD CONSTRAINT `fk_avaliacao` FOREIGN KEY (`avaliacao_id`) REFERENCES `avaliacoes` (`id`);
-
---
--- Constraints for table `estudantes`
+-- Limitadores para a tabela `estudantes`
 --
 ALTER TABLE `estudantes`
   ADD CONSTRAINT `estudantes_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`);
 
 --
--- Constraints for table `postagens`
+-- Limitadores para a tabela `postagens`
 --
 ALTER TABLE `postagens`
   ADD CONSTRAINT `postagens_ibfk_1` FOREIGN KEY (`projeto_id`) REFERENCES `projetos` (`id`);

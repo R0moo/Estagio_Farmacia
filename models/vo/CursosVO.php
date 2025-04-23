@@ -3,9 +3,7 @@
 namespace Model\VO;
 
 final class CursosVO extends VO {
-
-
-    private $avaliacao_id;    
+   
     private $titulo;
     private $resumo;
     private $vagas;
@@ -15,9 +13,8 @@ final class CursosVO extends VO {
     private $data_fim;
     private $imagem;
 
-    public function __construct($id = 0, $avaliacao_id = 0, $titulo = "", $resumo = "", $vagas = 0, $materiais = "", $carga_horaria = 0, $data_inicio = "", $data_fim = '', $imagem = '') {
+    public function __construct($id = 0, $titulo = "", $resumo = "", $vagas = 0, $materiais = "", $carga_horaria = 0, $data_inicio = "", $data_fim = '', $imagem = '') {
         parent::__construct($id);
-        $this->avaliacao_id = $avaliacao_id;
         $this->titulo = $titulo;
         $this->resumo = $resumo;
         $this->vagas = $vagas;
@@ -27,14 +24,6 @@ final class CursosVO extends VO {
         $this->data_fim = $data_fim;
         $this->imagem = $imagem;
         
-    }
-
-    public function getAvaliacaoId() {
-        return $this->avaliacao_id;
-    }
-
-    public function setAvaliacaoId($avaliacao_id) {
-        $this->avaliacao_id = $avaliacao_id;
     }
 
     public function getTitulo() {

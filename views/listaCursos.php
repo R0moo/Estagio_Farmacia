@@ -42,8 +42,8 @@
             <br>
             <p>Vagas: <?php $Curso->getVagas(); ?></p>
             <p>Carga Horária:<?php $Curso->getCargaHoraria(); ?> </p>
-            <p>Período: <?php echo $Curso->getDataInicio() . 'até' . $Curso->getDataFim(); ?></p>
-            <br>
+            <p>Período: <?php echo $Curso->getDataInicio() . ' até ' . $Curso->getDataFim(); ?></p>
+            
             <?php if($logado){ ?>
                 <div class="acoes">
                     <a href="Curso.php?id= <?php echo $Curso->getId();?>" >Editar</a>
