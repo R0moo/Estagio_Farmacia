@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Login - Farmácia Verde</title>
     <link rel="stylesheet" href="estilo.css">
-    <h1 class="farmaciaVerde_titulo"><p class="farmaciaTitulo">Farmácia</p> Verde</h1>
+
+    <div class="farmaciaVerde_titulo">
+        <h1 class="branco">Farmácia</h1>
+        <h1 class="verde"> Verde</h1>
+    </div>
+
     <h4 class="header_description">Políticas em saúde</h4>
 
 </head>
-<body class="login">
+<body class="login_body">
     <div class="container_login">
     <h1 class="Logar">Logar</h1>
     <form action="fazerLogin.php" method="post">

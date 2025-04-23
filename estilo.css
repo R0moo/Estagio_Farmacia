@@ -7,31 +7,55 @@
     box-sizing: border-box;
 }
 
+.login_body{
+    background-color: #D4ECC7;
+    gap: 15px;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #D4ECC7;
+    width: 100%;
+}
 
 body {
-    background-color: #D4ECC7;
+    background-color: white;
     height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 nav {
+    background-color: #D4ECC7;
+    padding: 10px 20px;
     display: flex;
-    text-align: center;
-    align-items: center;
     justify-content: space-between;
-    background-color: rgba(97, 97, 97, 0.1);
-    padding: 10px;
-    position: sticky;
-    border-bottom: 1px solid black;
+    align-items: center;
+    border-bottom: none;
 }
 
-.header {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
+.nav_div button {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 16px;
+    color: #5A8457;
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav_div button.active {
+    background-color: #5A8457;
+    color: white;
+    border-radius: 5px;
 }
 
 .postagens,
@@ -61,37 +85,60 @@ nav {
     background-color: #41613f;
 }
 
-.farmaciaVerde_titulo {
-    color: #5A8457;
-    font-family: "Poetsen One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    -webkit-text-stroke: 0.5px black;
-    text-shadow: 2px 2px 1px #3e693e;
+.header {
+    background-color: #D4ECC7;
+    text-align: center;
+    padding: 15px 0;
 }
 
-.farmaciaTitulo {
+.farmaciaVerde_titulo {
+    display: flex;
+    flex-direction: row;
+}
+
+.verde {
+    font-family: "Poetsen One", sans-serif;
+    font-size: 36px;
+    color: #5A8457;
+    text-shadow: 1px 1px #3e693e;
+}
+
+.branco {
+    font-family: "Poetsen One", sans-serif;
+    font-size: 36px;
     color: white;
+    text-shadow: 1px 1px #3e693e;
 }
 
 .header_description {
-    color: #5A8457;
     font-family: "Josefin Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
     font-style: italic;
+    font-size: 14px;
+    color: #3e693e;
 }
 
 .Logar {
     color: #5A8457;
 }
 
+.Logar:hover {
+    color: #0eac03
+}
+
 .label_senha {
     color: #5A8457;
 }
 
+.label_senha:hover {
+    color: #0eac03
+}
+
 .label_usuario {
     color: #5A8457;
+}
+
+.label_usuario:hover {
+    color: #0eac03
 }
 
 .recupera_Senha {
@@ -100,6 +147,15 @@ nav {
 
 .solicita_Acesso {
     color: #5A8457;
+}
+
+.container_login input:hover {
+    transition: ease-in-out 3s;
+    background-color: #c9c9c9;
+}
+
+.container_login input:focus {
+    border: none;
 }
 
 .container_login input[type="text"],
@@ -165,6 +221,8 @@ img {
 }
 
 .container_login {
+    display: flex;
+    flex-direction: column;
     background-color: #FAF8F8;
     padding: 30px;
     box-shadow:
@@ -173,7 +231,6 @@ img {
     border-radius: 25px;
     width: 100%;
     max-width: 350px;
-    text-align: left;
 }
 
 .container_login label {
@@ -221,6 +278,26 @@ form {
     background-color: rgb(209, 233, 255);
 }
 
+.nav_button1:active {
+    background-color: #1E3C13;
+    color: white;
+}
+
+.nav_button2:active {
+    background-color: #1E3C13;
+    color: white;
+}
+
+.nav_button3:active {
+    background-color: #1E3C13;
+    color: white;
+}
+
+.nav_button4:active {
+    background-color: #1E3C13;
+    color: white;
+}
+
 @media (max-width: 480px) {
     header h1 {
       font-size: 32px;
@@ -230,3 +307,12 @@ form {
       padding: 20px;
     }
   }
+
+  .projetos, .postagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+}

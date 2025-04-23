@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
-<head>
+<html lang="pt-br">
+<head class="header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pag Inicial</title>
+    <title>Página Inicial - Farmácia Verde</title>
     <link rel="stylesheet" href="estilo.css">
+
 </head>
 <body>
+    <div class="farmaciaVerde_titulo">
+            <h1 class="branco">Farmácia</h1>
+            <h1 class="verde"> Verde</h1>
+            </div>
+            <h4 class="header_description">Políticas em saúde</h4>
+                <a href="Usuarios.php">Usuarios</a>
+                <?php if(!$logado){ ?>
+                <a href="login.php">Login</a> 
+                <?php }else{ ?>
+                <a href="logout.php">Sair</a> 
+                <?php } ?>
+
+        
 
     <nav>
-        <h1>Farmácia Verde</h1>
-        <div class="links">
+            <div class="nav_div">
+            <button type="button" class="nav_button1" href="PagInicial.php">Início</button>
+            <button type="button" class="nav_button2" href="Receitas.php">Receitas</button>
+            <button type="button" class="nav_button3" href="Projetos.php">Projetos</button>
+            <button type="button" class="nav_button4" href="listaCursos.php">Cursos</button>
+            </div>
             
-            <a href="#">Home</a>
-            <a href="Receitas.php">Receitas</a>
-            <?php if(!$logado){ ?>
-                <a href="login.php">Login</a> 
-            <?php }else{ ?>
-
-            <a href="Usuarios.php">Usuarios</a>
-            <a href="logout.php">Sair</a> 
-            <?php } ?>
-        </div>
     </nav>
+            </div>
     
     <h2>Projetos</h2>
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() === '1'){ ?>
