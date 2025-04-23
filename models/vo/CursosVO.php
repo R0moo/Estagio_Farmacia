@@ -2,9 +2,9 @@
 
 namespace Model\VO;
 
-final class ReceitasVO extends VO {
+final class CursosVO extends VO {
 
-    private $estudantes_id;
+
     private $avaliacao_id;    
     private $titulo;
     private $resumo;
@@ -15,9 +15,8 @@ final class ReceitasVO extends VO {
     private $data_fim;
     private $imagem;
 
-    public function __construct($id = 0, $estudantes_id = 0, $avaliacao_id = 0, $titulo = "", $resumo = "", $vagas = 0, $materiais = "", $carga_horaria = 0, $data_inicio = "", $data_fim = '', $imagem = '') {
+    public function __construct($id = 0, $avaliacao_id = 0, $titulo = "", $resumo = "", $vagas = 0, $materiais = "", $carga_horaria = 0, $data_inicio = "", $data_fim = '', $imagem = '') {
         parent::__construct($id);
-        $this->estudantes_id = $estudantes_id;
         $this->avaliacao_id = $avaliacao_id;
         $this->titulo = $titulo;
         $this->resumo = $resumo;
@@ -28,14 +27,6 @@ final class ReceitasVO extends VO {
         $this->data_fim = $data_fim;
         $this->imagem = $imagem;
         
-    }
-
-    public function getEstudantesId() {
-        return $this->estudantes_id;
-    }
-
-    public function setEstudantesId($estudantes_id) {
-        $this->estudantes_Id = $estudantes_id;
     }
 
     public function getAvaliacaoId() {
@@ -86,28 +77,12 @@ final class ReceitasVO extends VO {
         $this->carga_horaria = $carga_horaria;
     }
 
-    public function getdata_inicio() {
+    public function getDataInicio() {
         return $this->data_inicio;
     }
 
-    public function setdata_inicio($data_inicio) {
+    public function setDataInicio($data_inicio) {
         $this->data_inicio = $data_inicio;
-    }
-
-    public function getCategoria() {
-        return $this->categoria;
-    }
-
-    public function setCategoria($categoria) {
-        $this->categoria = $categoria;
-    }
-
-    public function getImagem() {
-        return $this->imagem;
-    }
-
-    public function setImagem($imagem) {
-        $this->imagem = $imagem;
     }
 
     public function getDatafim() {
@@ -117,5 +92,12 @@ final class ReceitasVO extends VO {
     public function setDatafim($data_fim) {
         $this->data_fim = $data_fim;
     }
+    
+    public function getImagem() {
+        return $this->imagem;
+    }
 
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
 }

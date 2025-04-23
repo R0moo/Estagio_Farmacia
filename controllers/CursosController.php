@@ -8,29 +8,14 @@ use Model\VO\CursosVO;
 final class CursosController extends Controller {
 
     public function list() {
-        if (!empty($_GET['id'])) {
-            $idProjeto = $_GET['id'];
-    
-            $projetoVO = new CursosVO();
-            $projetoVO->setId($idProjeto);
-    
-            $modelProjeto = new CursosModel();
-            $projetoCompleto = $modelProjeto->selectOne($projetoVO);
+        $model = new CursosModel();
+        $data = $model->selectAll(new CursosVO());
 
-            $_SESSION['projeto'] = $projetoCompleto;
-        }
-    
-        $project = $_SESSION['projeto'] ?? null;
-    
-        $modelCursos = new CursosModel();
-        $data = $modelCursos->selectAll(new CursosVO());
-    
         $logged = isset($_SESSION["usuario"]);
-    
+
         $this->loadView("listaCursos", [
             "Cursos" => $data,
-            "logado" => $logged,
-            "projeto" => $project
+            "logado" => $logged
         ]);
     }
 
@@ -52,17 +37,58 @@ final class CursosController extends Controller {
     public function save() {
         $id = $_POST["id"];
         $fotoAtual = $_POST['foto_atual'];
-
+        $pasta = "uploads/";
+        $tiposPermitidos = ['jpg', 'jpeg', 'png', 'pdf', 'docx'];
+    
+        $nomeArquivo = $fotoAtual;
+    
         if (!empty($_FILES['foto']['name'])) {
-            $nomeArquivo = $this->uploadFiles($_FILES['foto']); 
-            if ($fotoAtual) {
-                unlink("uploads/" . $fotoAtual);
+            $extensao = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
+    
+            if (in_array($extensao, $tiposPermitidos)) {
+                $nomeArquivo = uniqid('foto_') . '.' . $extensao;
+                $destino = $pasta . $nomeArquivo;
+    
+                if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
+                    if ($fotoAtual && file_exists($pasta . $fotoAtual)) {
+                        unlink($pasta . $fotoAtual);
+                    }
+                } else {
+                    echo "Erro ao enviar a imagem!";
+                }
+            } else {
+                echo "Tipo de imagem não permitido!";
             }
-        } else {
-            $nomeArquivo = $fotoAtual;
+        }
+    
+        $nomesMateriais = [];
+        if (!empty($_FILES['materiais']['name'][0])) {
+            $total = count($_FILES['materiais']['name']);
+        
+            for ($i = 0; $i < $total; $i++) {
+                $nomeOriginal = $_FILES['materiais']['name'][$i];
+                $tmp = $_FILES['materiais']['tmp_name'][$i];
+                $extensao = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
+        
+                if (in_array($extensao, $tiposPermitidos)) {
+                    $novoNome = uniqid('material_') . '.' . $extensao;
+                    $destino = $pasta . $novoNome;
+        
+                    if (move_uploaded_file($tmp, $destino)) {
+                        $nomesMateriais[] = $novoNome;
+                        echo "Material $nomeOriginal enviado como $novoNome<br>";
+                    } else {
+                        echo "Erro ao enviar $nomeOriginal<br>";
+                    }
+                } else {
+                    echo "Tipo de arquivo $nomeOriginal não permitido.<br>";
+                }
+            }
         }
 
-        $vo = new CursosVO($id, $_POST["estudantes_id"], $_POST["avaliacao_id"],$_POST["titulo"], $_POST["resumo"], $_POST["vagas"], $_POST["materiais"], $_POST["carga_horaria"], $_POST["data_inicio"], $_POST["data_fim"], $nomeArquivo );
+        $stringMateriais = implode(',', $nomesMateriais);
+
+        $vo = new CursosVO($id, $_POST["avaliacao_id"],$_POST["titulo"], $_POST["resumo"], $_POST["vagas"], $stringMateriais, $_POST["carga_horaria"], $_POST["data_inicio"], $_POST["data_fim"], $nomeArquivo );
         $model = new CursosModel();
 
         if(empty($id)) {
