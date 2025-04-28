@@ -1,0 +1,27 @@
+# Ignora a pasta vendor (dependências do Composer)
+vendor/
+
+# Arquivos de ambiente (como .env)
+.env
+
+# Cache e logs
+storage/logs/
+storage/framework/cache/
+storage/framework/views/
+
+# Arquivos de IDE (como PHPStorm)
+.idea/
+*.swp
+*.swo
+
+# Arquivos de sistema (macOS)
+.DS_Store
+
+# Remove a pasta vendor do rastreamento do Git (mas mantém localmente)
+git rm -r --cached vendor/
+
+# Commit a remoção
+git commit -m "Remove vendor/ from Git tracking"
+
+# Agora, adicione a mudança ao repositório remoto (se aplicável)
+git push origin main
