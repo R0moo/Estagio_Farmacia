@@ -4,5 +4,8 @@
             "Model\\": "models/",
             "Controller\\": "controllers/"
         }
+    },
+    "require": {
+        "nesbot/carbon": "^2.73"
     }
 }

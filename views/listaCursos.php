@@ -40,9 +40,14 @@
             <?php }  echo $Curso->getTitulo(); ?></h3>
             <p><?php echo $Curso->getResumo(); ?></p>
             <br>
-            <p>Vagas: <?php $Curso->getVagas(); ?></p>
-            <p>Carga Horária:<?php $Curso->getCargaHoraria(); ?> </p>
+            <p>Vagas: <?php echo $Curso->getVagas(); ?></p>
+            <p>Carga Horária:<?php echo $Curso->getCargaHoraria(); ?> </p>
             <p>Período: <?php echo $Curso->getDataInicio() . ' até ' . $Curso->getDataFim(); ?></p>
+            <p>Data atual: <?php echo $hoje ?></p>
+
+            <?php if($Curso->getDataFim() == $hoje){ ?>
+           <a href="Avaliacao.php?id=<?php echo $Curso->getId(); ?> ">Avaliar</a>
+            <?php }?>
             
             <?php if($logado){ ?>
                 <div class="acoes">

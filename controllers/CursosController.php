@@ -1,6 +1,8 @@
 <?php
-
 namespace Controller;
+
+use Carbon\Carbon;
+date_default_timezone_set('America/Sao_Paulo');
 
 use Model\CursosModel;
 use Model\VO\CursosVO;
@@ -11,11 +13,14 @@ final class CursosController extends Controller {
         $model = new CursosModel();
         $data = $model->selectAll(new CursosVO());
 
-        $logged = isset($_SESSION["usuario"]);
+        $data_de_hj = Carbon::now();
 
+        $logged = isset($_SESSION["usuario"]);
+        
         $this->loadView("listaCursos", [
             "Cursos" => $data,
-            "logado" => $logged
+            "logado" => $logged,
+            "hoje" => $data_de_hj->format("Y-m-d"),
         ]);
     }
 

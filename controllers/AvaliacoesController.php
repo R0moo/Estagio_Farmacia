@@ -20,17 +20,18 @@ final class AvaliacoesController extends Controller {
     }
 
     public function form() {
-        $id = $_GET["id"] ?? 0;
+        $id_curso = $_GET["id"] ?? 0;
 
         if(!empty($id)) {
             $model = new AvaliacoesModel();
             $vo = new AvaliacoesVO($id);
-            $Receita = $model->selectOne($vo);
+            $Avaliacao = $model->selectOne($vo);
         } else {
-            $Receita = new AvaliacoesVO();
+            $Avaliacao = new AvaliacoesVO();
         }
         $this->loadView("formAvaliacoes", [
-            "Receita" => $Receita
+            "Avaliacao" => $Avaliacao,
+            "Curso"=> $id_curso
         ]);
     }
 
