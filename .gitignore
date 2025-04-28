@@ -17,11 +17,4 @@ storage/framework/views/
 # Arquivos de sistema (macOS)
 .DS_Store
 
-# Remove a pasta vendor do rastreamento do Git (mas mantém localmente)
-git rm -r --cached vendor/
-
-# Commit a remoção
-git commit -m "Remove vendor/ from Git tracking"
-
-# Agora, adicione a mudança ao repositório remoto (se aplicável)
-git push origin main
+vendor/
