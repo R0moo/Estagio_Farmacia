@@ -35,10 +35,10 @@
         <nav>
             <div class="nav_div">
 
-                <a href="index.php.php" class="nav_link1">Início</a>
-                <a href="#" class="nav_link2">Receitas</a>
+                <a href="index.php" class="nav_link1">Início</a>
+                <a href="Receitas.php" class="nav_link2">Receitas</a>
                 <a href="Projetos.php" class="nav_link3">Projetos</a>
-                <a href="Cursos.php" class="nav_link4">Cursos</a>
+                <a href="#" class="nav_link4">Cursos</a>
 
         </nav>
     </div>
@@ -64,6 +64,9 @@
             <p>Carga Horária:<?php echo $Curso->getCargaHoraria(); ?> </p>
             <p>Período: <?php echo $Curso->getDataInicio() . ' até ' . $Curso->getDataFim(); ?></p>
             <p>Data atual: <?php echo $hoje ?></p>
+            <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '1'){ ?>
+                    <a href="inscrever.php">Solicitar inscrição</a>
+                <?php } ?>
 
             <?php if($Curso->getDataFim() == $hoje){ ?>
            <a href="Avaliacao.php?id=<?php echo $Curso->getId(); ?> ">Avaliar</a>

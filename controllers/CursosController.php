@@ -7,6 +7,7 @@ date_default_timezone_set('America/Sao_Paulo');
 use Model\CursosModel;
 use Model\VO\CursosVO;
 
+
 final class CursosController extends Controller {
 
     public function list() {
@@ -114,5 +115,9 @@ final class CursosController extends Controller {
         $result = $model->delete($vo);
 
         $this->redirect("Cursos.php");
+    }
+
+    public function inscrever(){
+
     }
 }
