@@ -1,0 +1,20 @@
+# Ignora a pasta vendor (dependências do Composer)
+vendor/
+
+# Arquivos de ambiente (como .env)
+.env
+
+# Cache e logs
+storage/logs/
+storage/framework/cache/
+storage/framework/views/
+
+# Arquivos de IDE (como PHPStorm)
+.idea/
+*.swp
+*.swo
+
+# Arquivos de sistema (macOS)
+.DS_Store
+
+vendor/
