@@ -29,7 +29,7 @@ final class EstudantesController extends Controller {
     
         $logged = isset($_SESSION["usuario"]);
     
-        $this->loadView("curso_listaEstudantes", [
+        $this->loadView("listaEstudantes", [
             "Estudantes" => $data,
             "logado" => $logged,
             "curso" => $curso
