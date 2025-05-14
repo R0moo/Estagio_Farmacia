@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudantes - <?php  echo $curso->getTitulo(); ?></title>
+    <title>Estudantes - <?php; ?></title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -48,7 +48,10 @@
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
                <a href="Estudante.php" class="btn">Inserir novo</a>  
             <?php }?>
-    <div class="estudantes">    
+    <div class="estudantes">
+        <?php if(isset($_GET['erro'])){
+            echo 'Vagas já preenchidas';
+        }    ?>
 <?php foreach($Estudantes as $estudante) { ?>
     <?php if($estudante->getCursoId() == $_SESSION['curso']->getId()){ ?>
     <div class="card">
@@ -65,7 +68,7 @@
                 <div class="acoes">
                     <a href="Estudante.php?id= <?php echo $estudante->getId();?>" >Editar</a>
                     <br>
-                    <a href="excluirEstudantes.php?id=<?php echo $estudante->getId()?>">Deletar</a>
+                    <a href="excluirEstudantes.php?id=<?php echo $estudante->getId()?>&curso_id=<?php echo $estudante->getCursoId()?>">Deletar</a>
                 </div>
             <?php } ?>
     </div>

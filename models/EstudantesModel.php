@@ -41,8 +41,8 @@ final class EstudantesModel extends Model
             ":curso_id" => $vo->getCursoId(),
             ":nome" => $vo->getNome(),
             ":email" => $vo->getEmail(),
-            "cpf" => $vo->getCpf(),
-            "ocupacao" => $vo->getOcupacao(),
+            ":cpf" => $vo->getCpf(),
+            ":ocupacao" => $vo->getOcupacao(),
         ];
 
         return $db->execute($query, $binds);
@@ -71,4 +71,15 @@ final class EstudantesModel extends Model
 
         return $db->execute($query, $binds);
     }
+
+    public function contarPorCurso($cursoId) {
+        $db = new Database(); // ou como estiver implementado
+        $query = "SELECT COUNT(*) as total FROM estudantes WHERE curso_id = :curso_id";
+        $binds = [":curso_id" => $cursoId];
+        $result = $db->select($query, $binds);
+    
+        return $result[0]['total'] ?? 0;
+    }
+
+
 }
