@@ -64,12 +64,13 @@
             <p>Carga Horária:<?php echo $Curso->getCargaHoraria(); ?> </p>
             <p>Período: <?php echo $Curso->getDataInicio() . ' até ' . $Curso->getDataFim(); ?></p>
             <p>Data atual: <?php echo $hoje ?></p>
-            <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '1'){ ?>
+            <?php if(!isset($_SESSION['usuario']) || $_SESSION['usuario']->getNivel() !== '1'){ ?>
                     <a href="inscrever.php">Solicitar inscrição</a>
                 <?php }elseif($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() === '1'){ ?>
-                    <a href="Estudantes.php?id=" . <?php echo $Curso->getId(); ?>></a>
-                    <?php } ?>
-
+                    <a href="Estudantes.php?id=<?php echo $Curso->getId(); ?>">Inscritos</a>
+                    <?php }elseif($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '1') ?>
+                <br>
+    
             <?php if($Curso->getDataFim() == $hoje){ ?>
            <a href="Avaliacao.php?id=<?php echo $Curso->getId(); ?> ">Avaliar</a>
             <?php }?>

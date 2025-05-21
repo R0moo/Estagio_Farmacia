@@ -9,87 +9,82 @@ use Model\VO\CursosVO;
 
 final class EstudantesController extends Controller {
 
-    public function list() {
-        if (!empty($_GET['id'])) {
-            $idCurso = $_GET['id'];
-    
-            $cursoVO = new CursosVO();
-            $cursoVO->setId($idCurso);
-    
-            $modelCurso = new CursosModel();
-            $cursoCompleto = $modelCurso->selectOne($cursoVO);
+   public function list()
+{
+    $idCurso = $_GET['id'] ?? null;
 
-            $_SESSION['curso'] = $cursoCompleto;
-        }
-
-        $curso = $_SESSION['curso'] ?? null;
-    
-        $modelEstudantes = new EstudantesModel();
-        $data = $modelEstudantes->selectAll(new EstudantesVO());
-    
-        $logged = isset($_SESSION["usuario"]);
-    
-        $this->loadView("listaEstudantes", [
-            "Estudantes" => $data,
-            "logado" => $logged,
-            "curso" => $curso
-        ]);
-    }
-
-    public function form() {
-        $id = $_GET["id"] ?? 0;
-        $cursoId = $_SESSION['curso']->getId() ?? null; // Verificar se cursoId está definido
-
-        if(!empty($id)) {
-            $model = new EstudantesModel();
-            $vo = new EstudantesVO($id);
-            $Estudante = $model->selectOne($vo);
-        } else {
-            $Estudante = new EstudantesVO();
-        }
-        $this->loadView("formEstudantes", [
-            "Estudante" => $Estudante,
-            "cursoId" => $cursoId
-        ]);
-    }
-
-    public function save() {
-        $cursoId = $_POST["curso_id"];
-        
-        
+    $curso = null;
+    if ($idCurso) {
         $cursoVO = new CursosVO();
+        $cursoVO->setId($idCurso);
+
+        $modelCurso = new CursosModel();
+        $curso = $modelCurso->selectOne($cursoVO);
+    }
+
+    $logged = isset($_SESSION["usuario"]);
+
+    $model = new EstudantesModel();
+    $data = $model->selectAll(new EstudantesVO());
+
+
+    $this->loadView("listaEstudantes", [
+        "Estudantes" => $data,
+        "curso" => $curso,
+        "logado" => $logged
+    ]);
+}
+
+
+    public function form()
+{
+    $id = $_GET["id"] ?? 0;
+    $cursoId = $_GET['curso_id'] ?? null;
+
+    $model = new EstudantesModel();
+    if ($id) {
+    $obj = $model->selectOne(new EstudantesVO($id));
+    } else {
+    $obj = new EstudantesVO(); 
+    }
+
+    $this->loadView("formEstudantes", [
+        "Estudante" => $obj,
+        "cursoId" => $cursoId
+    ]);
+}
+
+
+    public function save(){
+    $id = $_POST["id"];
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $cpf = $_POST["cpf"];
+    $ocupacao = $_POST["ocupacao"];
+    $cursoId = $_POST["curso_id"];
+
+    $vo = new EstudantesVO($id, $cursoId, $nome, $cpf, $email, $ocupacao);
+    $model = new EstudantesModel();
+
+    $cursoVO = new CursosVO();
         $cursoVO->setId($cursoId);
         $cursoModel = new CursosModel();
         $curso = $cursoModel->selectOne($cursoVO);
-    
-        if (!$curso) {
-            echo "Curso não encontrado.";
-            exit;
+        $vagas = $curso->getVagas();
+
+    if ($id){
+        $model->update($vo);
+    }else{
+        if (count($model->selectAll(new EstudantesVO())) < $vagas){
+        $model->insert($vo);
+        $curso->setVagas($vagas - 1);
+        } else{
+            $erro = "Nf";
         }
-    
-        $vagas = $curso->getVagas(); 
-    
-        
-        $modelEstudantes = new EstudantesModel();
-        $inscritos = $modelEstudantes->contarPorCurso($cursoId);
-    
-        if ($inscritos >= $vagas) {
-            $this->redirect("Estudantes.php?erro=Nm");
-            exit;
-        }
-    
-        
-        $id = $_POST["id"];
-        $vo = new EstudantesVO($id, $cursoId, $_POST["nome"], $_POST["cpf"], $_POST["email"], $_POST["ocupacao"]);
-    
-        if (empty($id)) {
-            $result = $modelEstudantes->insert($vo);
-        } else {
-            $result = $modelEstudantes->update($vo);
-        }
-        $vagas_new = $curso->setVagas($vagas -= 1);
-        $this->redirect("Estudantes.php");
     }
+    header("Location: Estudantes.php?id=" . $cursoId . "&erro=" . $erro);
+    }
+
 
     public function remove() {
         $vo = new EstudantesVO($_GET["id"]);
@@ -104,7 +99,7 @@ final class EstudantesController extends Controller {
         $vagas = $curso->getVagas();
         $result = $model->delete($vo);
 
-        $vagas_new = $curso->setVagas($vagas += 1);
-        $this->redirect("Estudantes.php");
+        $curso->setVagas($vagas += 1);
+        $this->redirect("Estudantes.php?id=". $cursoId);
     }
 }

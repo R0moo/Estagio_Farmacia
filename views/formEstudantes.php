@@ -11,7 +11,7 @@
     <h1>Cadastro de Estudantes</h1>
     <form action="salvarEstudante.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Estudante->getId(); ?>">
-        <input type="hidden" name="curso_id" value="<?php echo $_SESSION['curso']->getId() ?>">
+        <input type="hidden" name="curso_id" value="<?php echo $cursoId; ?>">
         
         
         <label for="nome">Nome: </label>
@@ -27,7 +27,7 @@
         <input type="text" name="ocupacao" value="<?php echo $Estudante->getOcupacao(); ?>" placeholder="Ocupação:">
         <br>
         <div class="btns">
-        <a href="Estudantes.php">Voltar</a> <button type="submit">Salvar</button>
+        <a href="Estudantes.php?id=<?php if($cursoId){echo $cursoId;}else{echo $Estudante->getCursoId();}; ?>">Voltar</a> <button type="submit">Salvar</button>
         </div>
     </form>
 </div>

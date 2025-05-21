@@ -35,7 +35,7 @@
         <nav>
             <div class="nav_div">
 
-                <a href="index.php.php" class="nav_link1">Início</a>
+                <a href="index.php" class="nav_link1">Início</a>
                 <a href="#" class="nav_link2">Receitas</a>
                 <a href="Projetos.php" class="nav_link3">Projetos</a>
                 <a href="Cursos.php" class="nav_link4">Cursos</a>

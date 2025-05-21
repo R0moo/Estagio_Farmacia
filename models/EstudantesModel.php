@@ -22,26 +22,36 @@ final class EstudantesModel extends Model
         return $arrayList;
     }
 
-    public function selectOne($vo){
-        $db = new Database();
-        $query = "SELECT * FROM estudantes WHERE id = :id";
-        $binds = [':id' => $vo->getId()];
+public function selectOne($vo){
+    $db = new Database();
+    $query = "SELECT * FROM estudantes WHERE id = :id";
+    $binds = [':id' => $vo->getId()];
 
-        $data = $db->select($query, $binds);
+    $data = $db->select($query, $binds);
 
-        return new EstudantesVO($data[0]['id'], $data[0]['curso_id'], $data[0]['nome'], $data[0]['email'], $data[0]['cpf'], $data[0]['ocupacao']);
-
+    if ($data && isset($data[0])) {
+        return new EstudantesVO(
+            $data[0]['id'],
+            $data[0]['curso_id'],
+            $data[0]['nome'],
+            $data[0]['email'],
+            $data[0]['cpf'],
+            $data[0]['ocupacao']
+        );
     }
+
+    return new EstudantesVO(); // ou return null;
+}
     
     public function insert($vo){
         $db = new Database();
-        $query = "INSERT INTO estudantes (curso_id, nome, email, cpf, ocupacao) 
-                    VALUES (:curso_id, :nome, :email, :cpf, :ocupacao)";
+        $query = "INSERT INTO estudantes (curso_id, nome, cpf, email, ocupacao) 
+                    VALUES (:curso_id, :nome, :cpf, :email, :ocupacao)";
         $binds = [
             ":curso_id" => $vo->getCursoId(),
             ":nome" => $vo->getNome(),
-            ":email" => $vo->getEmail(),
             ":cpf" => $vo->getCpf(),
+            ":email" => $vo->getEmail(),
             ":ocupacao" => $vo->getOcupacao(),
         ];
 
@@ -50,13 +60,13 @@ final class EstudantesModel extends Model
     public function update($vo){
         $db = new Database();
             
-            $query = "UPDATE estudantes SET curso_id = :curso_id, nome = :nome, email = :email, cpf = :cpf, ocupacao = :ocupacao
+            $query = "UPDATE estudantes SET curso_id = :curso_id, nome = :nome, cpf = :cpf, email = :email, ocupacao = :ocupacao
                         WHERE id = :id";
             $binds = [
                 ":curso_id" => $vo->getCursoId(),
                 ":nome" => $vo->getNome(),
-                ":email" => $vo->getEmail(),
                 ":cpf" => $vo->getCpf(),
+                ":email" => $vo->getEmail(),
                 ":ocupacao" => $vo->getOcupacao(),
                 ":id" => $vo->getId()
             ];
@@ -73,7 +83,7 @@ final class EstudantesModel extends Model
     }
 
     public function contarPorCurso($cursoId) {
-        $db = new Database(); // ou como estiver implementado
+        $db = new Database(); 
         $query = "SELECT COUNT(*) as total FROM estudantes WHERE curso_id = :curso_id";
         $binds = [":curso_id" => $cursoId];
         $result = $db->select($query, $binds);
