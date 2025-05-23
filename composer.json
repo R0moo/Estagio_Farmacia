@@ -7,6 +7,6 @@
     },
     "require": {
         "nesbot/carbon": "^3.9",
-        "nnnick/chartjs": "^4.4"
+        "phpmailer/phpmailer": "^6.10"
     }
 }
