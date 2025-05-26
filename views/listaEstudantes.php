@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas</title>
+    <title>Estudantes - <?php echo $curso ? $curso->getTitulo() : 'Sem curso'; ?></title>
     <link rel="stylesheet" href="estilo.css">
 </head>
-<div>
+<body>
 
 <div class="cabecalho">
         <div class="farmaciaVerde_titulo">
@@ -18,12 +18,11 @@
         <?php if (!$logado) { ?>
             <a href="login.php">Login</a>
         <?php } else { ?>
-            <a href="mostrarPerfil.php">Meu perfil</a>
             <a href="logout.php">Sair</a>
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            
+
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
@@ -38,7 +37,7 @@
             <div class="nav_div">
 
                 <a href="index.php" class="nav_link1">Início</a>
-                <a href="#" class="nav_link2">Receitas</a>
+                <a href="Receitas.php" class="nav_link2">Receitas</a>
                 <a href="Projetos.php" class="nav_link3">Projetos</a>
                 <a href="Cursos.php" class="nav_link4">Cursos</a>
 
@@ -46,39 +45,36 @@
     </div>
     </div>
     
-    <h2>Receitas</h2>
+    <h2>Estudantes</h2>
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-               <button class="btn_InserirNovaReceita" onclick="location.href='Receita.php'">Inserir novo</button>
+              <a href="Estudante.php?curso_id=<?php echo $curso->getId(); ?>" class="btn">Inserir novo</a>
             <?php }?>
-    <div class="receitas">    
-<?php foreach($Receitas as $receita) { ?>
+    <div class="estudantes">
+        <?php if(isset($_GET['erro']) && $_GET['erro'] == 'Nf'){
+            echo 'Vagas já preenchidas';
+        }else if(isset($_GET['erro']) && $_GET['erro'] == 'ece'){
+            echo 'Email ou CPF já existente';
+        }    ?>
+<?php foreach ($Estudantes as $estudante): ?>
+    <?php if ($curso && $estudante->getCursoId() == $curso->getId()): ?>
     <div class="card">
-        <?php if ($receita->getImagem()) { ?>
-            <img src='uploads/<?php echo $receita->getImagem(); ?>' alt='<?php echo $receita->getTitulo(); ?>'>
-            <?php } ?>
+            <h3><?php  echo $estudante->getNome(); ?></h3>
+            <p>CPF: <?php echo $estudante->getCpf(); ?></p>
             <br>
-            <h3><?php  echo $receita->getTitulo(); ?></h3>
-            <p><?php echo $receita->getDescricao(); ?></p>
+            <p>Email: <?php echo $estudante->getEmail(); ?></p>
             <br>
-            <?php $ingredientes = explode(',', $receita->getIngredientes()); ?>
-            <p>Ingredientes:</p>
-            <ul>
-                <?php foreach($ingredientes as $ingrediente){ ?>
-                    <li> <?php echo $ingrediente; ?> </li>
-                <?php } ?>
-            </ul> <br>
-            <p>Modo de preparo: <?php echo $receita->getModoPreparo(); ?></p>
+            <p>Ocupacao: <?php echo $estudante->getOcupacao(); ?></p>
             <br>
             <?php if($logado){ ?>
                 <div class="acoes">
-                    <a href="Receita.php?id= <?php echo $receita->getId();?>" >Editar</a>
+                    <a href="Estudante.php?id= <?php echo $estudante->getId();?>" >Editar</a>
                     <br>
-                    <a href="excluirReceitas.php?id=<?php echo $receita->getId();?>&ft=<?php echo $receita->getImagem();?>">Deletar</a>
+                    <a href="excluirEstudantes.php?id=<?php echo $estudante->getId()?>&curso_id=<?php echo $estudante->getCursoId()?>">Deletar</a>
                 </div>
             <?php } ?>
     </div>
-
-    <?php } ?>
+    <?php endif; ?>
+<?php endforeach; ?>
 </div>
 </body>
 </html>

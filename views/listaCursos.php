@@ -22,7 +22,7 @@
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            <a href="#">Meu perfil</a>
+            <a href="mostrarPerfil.php">Meu perfil</a>
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
@@ -55,19 +55,20 @@
             <img src='uploads/<?php echo $Curso->getImagem(); ?>' alt='<?php echo $Curso->getTitulo(); ?>'>
             <?php } ?>
             <br>
-            <h3><?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-                <?php echo $Curso->getId(); ?>
-            <?php }  echo $Curso->getTitulo(); ?></h3>
+            <h3><?php  echo $Curso->getTitulo(); ?></h3>
             <p><?php echo $Curso->getResumo(); ?></p>
             <br>
             <p>Vagas: <?php echo $Curso->getVagas(); ?></p>
             <p>Carga Horária:<?php echo $Curso->getCargaHoraria(); ?> </p>
             <p>Período: <?php echo $Curso->getDataInicio() . ' até ' . $Curso->getDataFim(); ?></p>
             <p>Data atual: <?php echo $hoje ?></p>
-            <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '1'){ ?>
+            <?php if(!isset($_SESSION['usuario']) || $_SESSION['usuario']->getNivel() !== '1'){ ?>
                     <a href="inscrever.php">Solicitar inscrição</a>
-                <?php } ?>
-
+                <?php }elseif($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() === '1'){ ?>
+                    <a href="Estudantes.php?id=<?php echo $Curso->getId(); ?>">Inscritos</a>
+                    <?php }elseif($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '1') ?>
+                <br>
+    
             <?php if($Curso->getDataFim() == $hoje){ ?>
            <a href="Avaliacao.php?id=<?php echo $Curso->getId(); ?> ">Avaliar</a>
             <?php }?>

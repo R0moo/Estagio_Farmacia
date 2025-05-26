@@ -1,11 +1,18 @@
 <?php
 namespace Controller;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
 use Carbon\Carbon;
 date_default_timezone_set('America/Sao_Paulo');
 
 use Model\CursosModel;
 use Model\VO\CursosVO;
+
 
 final class CursosController extends Controller {
 
@@ -114,5 +121,43 @@ final class CursosController extends Controller {
         $result = $model->delete($vo);
 
         $this->redirect("Cursos.php");
+    }
+
+    public function inscrever(){
+        $this->loadView("formInscricao", []);
+    }
+    public function sendMail(){
+        $nome = $_POST["nome"];
+        $email = $_POST["email"];
+        $cpf = $_POST['cpf'];
+
+        $mail = new PHPMailer(true);
+
+        try {
+            // Configurações do servidor
+            $mail->isSMTP();                                            // Enviar usando SMTP
+            $mail->Host       = 'live.smtp.mailtrap.io';                     // Defina o servidor SMTP para enviar
+            $mail->SMTPAuth   = true;                                   // Habilitar autenticação SMTP
+            $mail->Username   = 'smtp@mailtrap.io';               // username SMTP
+            $mail->Password   = '399eacd93657d749e6c872fae9ff0feb';                        // senha SMTP
+            $mail->SMTPSecure = 'tls'; // Habilitar criptografia TLS
+            $mail->Port       = 587;                                    // Porta TCP para conectar
+
+            $mail->setFrom('smtp@mailtrap.io', 'Rômulo');
+            $mail->addAddress($email, $nome);
+            // Enviar email em texto simples
+            $mail->isHTML(false); // Definir formato do email para texto simples
+            $mail->Subject = 'Inscrição Farmácia Verde';
+            $mail->Body    = 'Olá ' . $nome . 'sua inscrição foi mandada com sucesso. Aliás esse é o seu CPF: ' . $cpf;
+
+            // Enviar o email
+            if(!$mail->send()){
+                echo 'A mensagem não pôde ser enviada. Erro do Mailer: ' . $mail->ErrorInfo;
+            } else {
+                echo 'A mensagem foi enviada';
+            }   
+            } catch (Exception $e) {
+            echo "A mensagem não pôde ser enviada. Erro do Mailer: {$mail->ErrorInfo}";
+            }
     }
 }

@@ -30,7 +30,7 @@
     
     <div class="usuarios">
     <div class="card">
-            <h4>Id: <?php echo $usuario->getId(); ?>
+            
             <h4>Login: <?php echo $usuario->getLogin(); ?></h4>
             <h4>Email: <?php echo $usuario->getEmail(); ?></h4>
             <h4>CPF: <?php echo $usuario->getCpf(); ?></h4>

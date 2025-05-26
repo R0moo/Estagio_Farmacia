@@ -111,4 +111,16 @@ final class UsuarioModel extends Model
 
         return $_SESSION['usuario'];
     }
+
+    public function existsByEmailOrCpf($email, $cpf) {
+    $db = new Database();
+    $query = "SELECT COUNT(*) as total FROM usuarios WHERE email = :email OR cpf = :cpf";
+    $binds = [
+        ":email" => $email,
+        ":cpf" => $cpf,
+    ];
+
+    $data = $db->select($query, $binds);
+    return $data[0]['total'] > 0;
+}
 }
