@@ -40,7 +40,7 @@ nav {
     border-bottom: none;
 }
 
-.nav_div button {
+.nav_div a {
     font-family: "Josefin Sans", sans-serif;
     font-size: 16px;
     color: #5A8457;
@@ -52,7 +52,7 @@ nav {
     transition: 0.3s;
 }
 
-.nav_div button.active {
+.nav_div a.active {
     background-color: #5A8457;
     color: white;
     border-radius: 5px;
@@ -115,6 +115,43 @@ nav {
     font-style: italic;
     font-size: 14px;
     color: #3e693e;
+}
+
+.user_icon {
+    color: black;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #333;
+    padding-top: 60px;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+}
+  
+  #side-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+  
+  #side-menu ul li {
+    padding: 15px;
+}
+  
+  #side-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+  
+  #side-menu.show {
+    transform: translateX(0);
 }
 
 .Logar {
@@ -278,22 +315,27 @@ form {
     background-color: rgb(209, 233, 255);
 }
 
-.nav_button1:active {
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav_link1:active {
     background-color: #1E3C13;
     color: white;
 }
 
-.nav_button2:active {
+.nav_link2:active {
     background-color: #1E3C13;
     color: white;
 }
 
-.nav_button3:active {
+.nav_link3:active {
     background-color: #1E3C13;
     color: white;
 }
 
-.nav_button4:active {
+.nav_link4:active {
     background-color: #1E3C13;
     color: white;
 }
@@ -315,4 +357,28 @@ form {
     padding: 20px;
     width: 90%;
     max-width: 1000px;
+}
+
+.header_navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.logOutIn {
+    color: #5A8457;
+}
+
+.Projetos_h2 {
+    background: linear-gradient(to right, red, yellow, green);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.receitas {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
 }

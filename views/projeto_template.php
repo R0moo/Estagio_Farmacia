@@ -8,8 +8,8 @@
 </head>
 <body>
     <?php ?>
-    <nav style="background-color: <?php echo $_SESSION['projeto']->getCor1(); ?>">
-        <h1><?php echo $_SESSION['projeto']->getTitulo(); ?></h1>
+    <nav class="header_navigation" style="background-color: <?php echo $_SESSION['projeto']->getCor1(); ?>">
+        <h1 class="new_project_color"><?php echo $_SESSION['projeto']->getTitulo(); ?></h1>
         <div class="links">
             <a href="index.php">Home</a>
             <a href="Receitas.php">Receitas</a>
@@ -17,7 +17,6 @@
             <?php if(!$logado){ ?>
                 <a href="login.php">Login</a> 
             <?php }else{ ?>
-            <a href="Usuarios.php">Usuarios</a>
             <a href="logout.php">Sair</a> 
             <?php } ?>
         </div>
