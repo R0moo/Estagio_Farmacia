@@ -6,7 +6,7 @@
     <title>Receitas</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
-<body>
+<div>
 
 <div class="cabecalho">
         <div class="farmaciaVerde_titulo">
@@ -35,18 +35,20 @@
         <nav>
             <div class="nav_div">
 
-                <a href="index.php.php" class="nav_link1">Início</a>
+                <a href="index.php" class="nav_link1">Início</a>
                 <a href="#" class="nav_link2">Receitas</a>
                 <a href="Projetos.php" class="nav_link3">Projetos</a>
                 <a href="Cursos.php" class="nav_link4">Cursos</a>
 
+            </div>
+
         </nav>
-    </div>
+    
     </div>
     
     <h2>Receitas</h2>
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-               <a href="Receita.php" class="btn">Inserir novo</a>  
+               <button class="btn_InserirNovaReceita" onclick="location.href='Receita.php'">Inserir novo</button>
             <?php }?>
     <div class="receitas">    
 <?php foreach($Receitas as $receita) { ?>

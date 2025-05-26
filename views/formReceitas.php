@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receitas</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estil.css">
 </head>
 <body class="FormReceitas">
-    <div class="container">
+    <div class="container_formReceitas">
     <h1>Cadastro de Receitas</h1>
     <form action="salvarReceita.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Receita->getId(); ?>">
@@ -42,8 +42,8 @@
         <label for="data_criacao">Data de Criação: </label>
         <input type="date" name="data_criacao" value="<?php echo $Receita->getDataCriacao(); ?>" placeholder="Data de Criação:">
         <br>
-        <div class="btns">
-        <a href="Receitas.php">Voltar</a> <button type="submit">Salvar</button>
+        <div class="btns_formReceitas">
+        <a class="btn-1" href='Receitas.php'>Voltar</a> <button type="submit">Salvar</a>
         </div>
     </form>
 </div>
