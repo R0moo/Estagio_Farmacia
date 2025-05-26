@@ -24,10 +24,11 @@
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            <a href="#">Meu perfil</a>
+            
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
+                <a href="mostrarPerfil.php">Meu perfil</a>
                 <a href="logout.php">Sair</a>
             <?php } ?>
         </nav>
@@ -61,9 +62,6 @@
 
                     <br>
                     <h3>
-                        <?php if ($logado) { ?>
-                            <?php echo $projeto->getId(); ?> -
-                        <?php } ?>
                         <?php echo $projeto->getTitulo(); ?>
                     </h3>
                     <br>

@@ -22,10 +22,11 @@
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            <a href="#">Meu perfil</a>
+
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
+                <a href="mostrarPerfil.php">Meu perfil</a>
                 <a href="logout.php">Sair</a>
             <?php } ?>
         </nav>
@@ -51,13 +52,13 @@
     <div class="estudantes">
         <?php if(isset($_GET['erro']) && $_GET['erro'] == 'Nf'){
             echo 'Vagas já preenchidas';
+        }else if(isset($_GET['erro']) && $_GET['erro'] == 'ece'){
+            echo 'Email ou CPF já existente';
         }    ?>
 <?php foreach ($Estudantes as $estudante): ?>
     <?php if ($curso && $estudante->getCursoId() == $curso->getId()): ?>
     <div class="card">
-            <h3><?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-                <?php echo $estudante->getId(); ?>
-            <?php }  echo $estudante->getNome(); ?></h3>
+            <h3><?php  echo $estudante->getNome(); ?></h3>
             <p>CPF: <?php echo $estudante->getCpf(); ?></p>
             <br>
             <p>Email: <?php echo $estudante->getEmail(); ?></p>

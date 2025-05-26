@@ -4,6 +4,8 @@ namespace Controller;
 
 use Model\UsuarioModel;
 use Model\VO\UsuarioVO;
+use Model\InscricaoModel;
+use Model\VO\InscricaoVO;
 
 final class UsuarioController extends Controller
 {
@@ -19,6 +21,31 @@ final class UsuarioController extends Controller
         $this->loadView("listaUsuarios", [
             "usuarios" => $data
         ]);
+    }
+
+    public function mostrarPerfil(){
+      $usuarioId = $_SESSION["usuario"]->getId();
+
+    $usuarioModel = new UsuarioModel();
+    $usuario = $usuarioModel->selectOne(new UsuarioVO($usuarioId));
+
+    $inscricaoModel = new InscricaoModel();
+    $cursos = $inscricaoModel->selectCursosByUsuarioId($usuarioId);
+
+    $logged = isset($_SESSION["usuario"]);
+
+    // Cálculo da carga horária total
+    $cargaHorariaTotal = 0;
+    foreach ($cursos as $curso) {
+        $cargaHorariaTotal += $curso->getCargaHoraria();
+    }
+
+    $this->loadView("meuPerfil", [
+        "usuario" => $usuario,
+        "cursos" => $cursos,
+        "cargaHorariaTotal" => $cargaHorariaTotal,
+        "logado" => $logged
+    ]);
     }
 
     public function form(){

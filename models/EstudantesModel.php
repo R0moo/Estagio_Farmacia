@@ -15,12 +15,29 @@ final class EstudantesModel extends Model
         $arrayList = [];
 
         foreach ($data as $row) {
-            $vo = new EstudantesVO($row['id'], $row['curso_id'], $row['nome'], $row['email'], $row['cpf'], $row['ocupacao']);
+            $vo = new EstudantesVO($row['id'], $row['curso_id'], $row['nome'], $row['cpf'], $row['email'],$row['ocupacao']);
             array_push($arrayList, $vo);
         }
 
         return $arrayList;
     }
+
+    public function selectByCursoId($cursoId) {
+    $db = new Database();
+    $query = "SELECT * FROM estudantes WHERE curso_id = :cursoId";
+    $params = [':cursoId' => $cursoId];
+    
+    $data = $db->select($query, $params);
+
+    $arrayList = [];
+
+    foreach ($data as $row) {
+        $vo = new EstudantesVO($row['id'], $row['curso_id'], $row['nome'], $row['cpf'], $row['email'],$row['ocupacao']);
+        array_push($arrayList, $vo);
+    }
+
+    return $arrayList;
+}
 
 public function selectOne($vo){
     $db = new Database();

@@ -21,7 +21,7 @@
         <input type="number" name="cpf" value="<?php echo $Estudante->getCpf(); ?>" placeholder="CPF:">
         <br>
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email" placeholder="Email:">
+        <input type="email" name="email" id="email" placeholder="Email:" value="<?php echo $Estudante->getEmail(); ?>">
         <br>
         <label for="ocupacao">Ocupação: </label>
         <input type="text" name="ocupacao" value="<?php echo $Estudante->getOcupacao(); ?>" placeholder="Ocupação:">

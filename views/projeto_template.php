@@ -40,9 +40,7 @@
             <img src='uploads/<?php echo $postagem->getFoto(); ?>' alt='<?php echo $postagem->getTitulo(); ?>'>
             <?php } ?>
             <br>
-            <h3><?php if($logado){ ?>
-                <?php echo $postagem->getId(); ?>
-            <?php }  echo $postagem->getTitulo(); ?></h3>
+            <h3><?php  echo $postagem->getTitulo(); ?></h3>
             <p><?php echo $postagem->getDescricao(); ?></p>
             <br>
             <?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>

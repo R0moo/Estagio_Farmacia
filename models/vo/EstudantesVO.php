@@ -10,12 +10,12 @@ final class EstudantesVO extends VO {
     private $cpf;
     private $ocupacao;
     
-    public function __construct($id = 0, $curso_id = 0, $nome = "", $email = "", $cpf = "", $ocupacao = ""){
+    public function __construct($id = 0, $curso_id = 0, $nome = "", $cpf = "", $email = "", $ocupacao = ""){
         parent::__construct($id);
         $this->curso_id = $curso_id;
         $this->nome = $nome;
-        $this->email = $email;
         $this->cpf = $cpf;
+        $this->email = $email;
         $this->ocupacao = $ocupacao;
     }
 

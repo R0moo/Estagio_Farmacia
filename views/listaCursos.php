@@ -22,7 +22,7 @@
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            <a href="#">Meu perfil</a>
+            <a href="mostrarPerfil.php">Meu perfil</a>
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
@@ -55,9 +55,7 @@
             <img src='uploads/<?php echo $Curso->getImagem(); ?>' alt='<?php echo $Curso->getTitulo(); ?>'>
             <?php } ?>
             <br>
-            <h3><?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-                <?php echo $Curso->getId(); ?>
-            <?php }  echo $Curso->getTitulo(); ?></h3>
+            <h3><?php  echo $Curso->getTitulo(); ?></h3>
             <p><?php echo $Curso->getResumo(); ?></p>
             <br>
             <p>Vagas: <?php echo $Curso->getVagas(); ?></p>

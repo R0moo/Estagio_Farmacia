@@ -18,14 +18,16 @@
         <?php if (!$logado) { ?>
             <a href="login.php">Login</a>
         <?php } else { ?>
+            <a href="mostrarPerfil.php">Meu perfil</a>
             <a href="logout.php">Sair</a>
         <?php } ?>
 
         <nav id="side-menu" class="hidden">
-            <a href="#">Meu perfil</a>
+            
             <?php if (!$logado) { ?>
                 <a href="login.php">Login</a>
             <?php } else { ?>
+                <a href="mostrarPerfil.php">Meu perfil</a>
                 <a href="logout.php">Sair</a>
             <?php } ?>
         </nav>
@@ -55,9 +57,7 @@
             <img src='uploads/<?php echo $receita->getImagem(); ?>' alt='<?php echo $receita->getTitulo(); ?>'>
             <?php } ?>
             <br>
-            <h3><?php if($logado && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-                <?php echo $receita->getId(); ?>
-            <?php }  echo $receita->getTitulo(); ?></h3>
+            <h3><?php  echo $receita->getTitulo(); ?></h3>
             <p><?php echo $receita->getDescricao(); ?></p>
             <br>
             <?php $ingredientes = explode(',', $receita->getIngredientes()); ?>

@@ -55,7 +55,7 @@ final class EstudantesController extends Controller {
 }
 
 
-    public function save(){
+public function save(){
     $id = $_POST["id"];
     $nome = $_POST["nome"];
     $email = $_POST["email"];
@@ -67,39 +67,73 @@ final class EstudantesController extends Controller {
     $model = new EstudantesModel();
 
     $cursoVO = new CursosVO();
-        $cursoVO->setId($cursoId);
-        $cursoModel = new CursosModel();
-        $curso = $cursoModel->selectOne($cursoVO);
-        $vagas = $curso->getVagas();
+    $cursoVO->setId($cursoId);
+    $cursoModel = new CursosModel();
+    $curso = $cursoModel->selectOne($cursoVO);
+    $vagas = $curso->getVagas();
 
     if ($id){
         $model->update($vo);
-    }else{
-        if (count($model->selectAll(new EstudantesVO())) < $vagas){
-        $model->insert($vo);
-        $curso->setVagas($vagas - 1);
-        } else{
+    } else {
+        $estudantesDoCurso = $model->selectByCursoId($cursoId);
+
+        if (count($estudantesDoCurso) < $vagas) {
+                $model->insert($vo);
+                $curso->setVagas($vagas - 1);
+            $usuarioModel = new \Model\UsuarioModel();
+            if (!$usuarioModel->existsByEmailOrCpf($email, $cpf)) {
+
+                $usuarioVO = new \Model\VO\UsuarioVO();
+                $usuarioVO->setLogin($email);
+                $usuarioVO->setSenha($cpf); // trocar isso tudo pra password hash e verify
+                $usuarioVO->setNivel("3");
+                $usuarioVO->setEmail($email);
+                $usuarioVO->setCpf($cpf);
+                $usuarioVO->setOcupacao($ocupacao);
+
+                $usuarioModel->insert($usuarioVO);
+            }else{
+
+            }
+        } else {
             $erro = "Nf";
         }
     }
-    header("Location: Estudantes.php?id=" . $cursoId . "&erro=" . $erro);
-    }
+
+    header("Location: Estudantes.php?id=" . $cursoId . "&erro=" . ($erro ?? ""));
+}
+
 
 
     public function remove() {
-        $vo = new EstudantesVO($_GET["id"]);
-        $model = new EstudantesModel();
+    $idEstudante = $_GET["id"];
+    $cursoId = $_GET["curso_id"];
 
-        $cursoId = $_GET["curso_id"];
-    
-        $cursoVO = new CursosVO();
-        $cursoVO->setId($cursoId);
-        $cursoModel = new CursosModel();
-        $curso = $cursoModel->selectOne($cursoVO);
-        $vagas = $curso->getVagas();
-        $result = $model->delete($vo);
+    $model = new EstudantesModel();
+    $vo = $model->selectOne(new EstudantesVO($idEstudante)); // Recupera dados do estudante antes de deletar
 
-        $curso->setVagas($vagas += 1);
-        $this->redirect("Estudantes.php?id=". $cursoId);
+    // Remove estudante
+    $model->delete(new EstudantesVO($idEstudante));
+
+    // Atualiza vagas do curso
+    $cursoVO = new CursosVO();
+    $cursoVO->setId($cursoId);
+    $cursoModel = new CursosModel();
+    $curso = $cursoModel->selectOne($cursoVO);
+    $vagas = $curso->getVagas();
+    $curso->setVagas($vagas + 1);
+
+    // Remove o usuário correspondente (por email e cpf)
+    $usuarioModel = new \Model\UsuarioModel();
+
+    $usuarios = $usuarioModel->selectAll(new \Model\VO\UsuarioVO());
+    foreach ($usuarios as $usuario) {
+        if ($usuario->getEmail() === $vo->getEmail() && $usuario->getCpf() === $vo->getCpf()) {
+            $usuarioModel->delete($usuario);
+            break; // garante que só remove um
+        }
     }
+
+    $this->redirect("Estudantes.php?id=". $cursoId);
+}
 }
