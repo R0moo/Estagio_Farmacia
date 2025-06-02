@@ -163,7 +163,7 @@ label:hover, .Logar:hover {
     border: none;
 }
 
-.FormReceitas {
+.FormReceitas, .FormCursos {
     width: 100%;
     background-color: #D4ECC7;
 }
@@ -190,13 +190,13 @@ label:hover, .Logar:hover {
     gap: 10px;
 }
 
-.container_formReceitas h1 {
+.container_formReceitas h1, .container_formCursos h1 {
     display: flex;
     align-self: center;
     justify-content: center;
 }
 
-.container_formReceitas input {
+.container_formReceitas input, .container_formCursos input {
     width: 80%;
     padding: 10px;
     box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
@@ -209,17 +209,19 @@ label:hover, .Logar:hover {
     border: none;
 }
 
-.container_formReceitas input:hover {
+.container_formReceitas input:hover, .container_formCursos input:hover{
     transition: ease-in-out 3s;
     background-color: #c9c9c9;
 }
 
-.container_formReceitas input:focus {
+.container_formReceitas input:focus, .container_formCursos input:focus {
     border: none;
 }
 
 .btns_formReceitas button,
-.btns_formReceitas a {
+.btns_formReceitas a,
+.btns_formCursos button,
+.btns_formCursos a {
     color: white;
     border: none;
     border-radius: 15px;
@@ -230,22 +232,24 @@ label:hover, .Logar:hover {
     transition: background 0.3s ease;
 }
 
-.btns_formReceitas button {
+.btns_formReceitas button, .btns_formCursos button {
     height: 35px;
     width: 100px;
+    background-color: #0eac0e;
 }
 
-.btns_formReceitas a {
+.btns_formReceitas a, .btns_formCursos a {
     height: 70px;
     width: 200px;
     background-color: #fd3a36 ;
 }
 
-.btns_formReceitas button:hover {
+.btns_formReceitas button:hover, .btns_formCursos button:hover {
+    background-color: #1E3C13;
     cursor: pointer;
 }
 
-.btns_formReceitas a:hover {
+.btns_formReceitas a:hover, .btns_formCursos a:hover {
     cursor: pointer;
     background-color: #9c2422;
 }
@@ -356,11 +360,11 @@ h2 {
     background-color: #b73124;
 }
 
-.card .acoes a[href*="Curso"] {
+.card .acoes a[href*="Curso.php"] {
     background-color: #4caf50;
 }
 
-.card .acoes a[href*="Curso"]:hover {
+.card .acoes a[href*="Curso.php"]:hover {
     background-color: #3a8a33;
 }
 
@@ -486,7 +490,7 @@ a {
     margin: 0 auto;
 }
 
-.btn_InserirNovaReceita {
+.btn_InserirNovaReceita, .btn_InserirNovoCurso {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -500,7 +504,7 @@ a {
     width: auto;
 }
 
-.btn_InserirNovaReceita:hover {
+.btn_InserirNovaReceita:hover, .btn_InserirNovoCurso:hover {
     background-color: #1E3C13;
 }
 

@@ -9,7 +9,7 @@
 
 <script src="script.js"></script>
 <body class="FormCursos">
-    <div class="container">
+    <div class="container_formCursos">
     <h1>Cadastro de Cursos</h1>
     <form action="salvarCursos.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $Curso->getId(); ?>">

@@ -48,7 +48,7 @@
     
     <h2>Cursos</h2>
     <?php if($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() !== '3'){ ?>
-               <a href="Curso.php" class="btn">Inserir novo</a>  
+                <button class="btn_InserirNovoCurso" onclick="location.href='Curso.php'">Inserir novo</button>  
             <?php }?>
     <div class="cursos">    
 <?php foreach($Cursos as $Curso) { ?>
