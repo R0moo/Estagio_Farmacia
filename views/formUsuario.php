@@ -6,6 +6,8 @@
     <title>Farmácia Verde - Usuários</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body class="FormUsuarios">
     <div class="container">
     <h1> Cadastro de Usuários</h1>

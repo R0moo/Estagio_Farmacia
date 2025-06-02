@@ -9,6 +9,7 @@
 
 </head>
 
+<script src="script.js"></script>
 <body>
     <div class="cabecalho">
         <div class="farmaciaVerde_titulo">

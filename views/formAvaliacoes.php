@@ -6,6 +6,8 @@
     <title>Avaliação do Curso</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body class="FormAvaliacoes">
     <div class="container">
     <h1>Avaliacão</h1>

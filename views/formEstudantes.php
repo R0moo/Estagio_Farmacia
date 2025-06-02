@@ -6,6 +6,8 @@
     <title>Catalogo de Estudantes</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body class="FormEstudantes">
     <div class="container">
     <h1>Cadastro de Estudantes</h1>

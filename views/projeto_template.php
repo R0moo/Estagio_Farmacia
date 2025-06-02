@@ -6,6 +6,8 @@
     <title>Postagens</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body>
     <?php ?>
     <nav class="header_navigation" style="background-color: <?php echo $_SESSION['projeto']->getCor1(); ?>">

@@ -6,6 +6,8 @@
     <title>Catalogo de Postagens</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body class="FormPostagens">
     <div class="container">
     <h1>Cadastro de Postagens</h1>

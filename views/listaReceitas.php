@@ -6,6 +6,8 @@
     <title>Receitas</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <div>
 
 <div class="cabecalho">

@@ -6,6 +6,8 @@
     <title>Farmácia Verde</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body>
     <?php $isNivel1 = $_SESSION['usuario']->getNivel() === '1'; ?>
 <nav>

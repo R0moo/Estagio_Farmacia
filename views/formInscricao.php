@@ -6,6 +6,8 @@
     <title>Inscrição</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body>
     <div class="cabecalho">
         <div class="farmaciaVerde_titulo">

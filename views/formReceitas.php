@@ -6,6 +6,8 @@
     <title>Receitas</title>
     <link rel="stylesheet" href="estil.css">
 </head>
+
+<script src="script.js"></script>
 <body class="FormReceitas">
     <div class="container_formReceitas">
     <h1>Cadastro de Receitas</h1>

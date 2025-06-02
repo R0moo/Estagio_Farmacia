@@ -6,6 +6,8 @@
     <title>Projetos</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
+<script src="script.js"></script>
 <body>
     <h1>Adicionar Projetos</h1>
     <form action="salvarProjeto.php" method="POST" enctype="multipart/form-data">

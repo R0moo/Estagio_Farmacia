@@ -14,6 +14,8 @@
     <h4 class="header_description">Políticas em saúde</h4>
 
 </head>
+
+<script src="script.js"></script>
 <body class="login_body">
     <div class="container_login">
     <h1 class="Logar">Logar</h1>
