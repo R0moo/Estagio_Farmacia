@@ -25,6 +25,7 @@
     background-color: #D4ECC7;
     width: 100%;
     padding: 20px 10px;
+    padding-bottom: 40px;
     position: relative;
     top: 0;
     left: 0;
@@ -41,6 +42,21 @@ body {
     justify-content: center;
 }
 
+.auth_links {
+    margin-top: 10px;
+}
+
+.auth_links a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.auth_links a:hover {
+    text-decoration: underline;
+    transition: ease 0.3s;
+    color: white;
+}
+
 nav {
     background-color: #D4ECC7;
     padding: 10px 20px;
@@ -52,6 +68,10 @@ nav {
     gap: 10px;
 }
 
+.nav_div {
+    margin-top: 20px;
+}
+
 .nav_div a {
     font-family: "Josefin Sans", sans-serif;
     font-size: 16px;
@@ -60,14 +80,17 @@ nav {
     border: none;
     margin: 0 10px;
     padding: 10px 20px;
+    border-radius: 5px; 
     cursor: pointer;
-    transition: 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .nav_div a.active {
     background-color: var(--cor-tema);
     color: white;
-    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
 }
 
 .postagens,
@@ -103,7 +126,7 @@ nav {
     background-color: var(--cor-hover);
 }
 
-.header {
+head {
     background-color: #D4ECC7;
     text-align: center;
     padding: 15px 0;
@@ -133,6 +156,7 @@ nav {
     font-style: italic;
     font-size: 14px;
     color: #3e693e;
+    margin: 15px 0 25px;
     margin-left: 0;
     text-align: center;
     white-space: normal;
@@ -281,6 +305,7 @@ h2 {
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
+    margin-bottom: 20px;
 }
 
 .card:hover {
@@ -342,6 +367,21 @@ h2 {
     color: black;
     transition: background-color 0.3s ease;
     user-select: none;
+}
+
+.card .acoes a[href*="Projeto.php"] {
+    background-color: var(--cor-tema);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.card .acoes a[href*="Projeto.php"]:hover {
+    background-color: var(--cor-hover);
 }
 
 .card .acoes a[href*="Receita"] {
@@ -471,10 +511,11 @@ a {
   .projetos, .postagens {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    padding: 30px;
+    gap: 30px;
     width: 90%;
     max-width: 1000px;
+    margin-top: 30px;
 }
 
 .header_navigation {
@@ -501,26 +542,38 @@ a {
     margin: 0 auto;
 }
 
-.btn_InserirNovaReceita, .btn_InserirNovoCurso, .btn_InserirNovoPost {
-    background-color: #4CAF50;
+.btn_InserirNovaReceita,
+.btn_InserirNovoCurso,
+.btn_InserirNovoPost {
+    background-color: var(--cor-tema);
     color: white;
     border: none;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: 14px 28px;
+    font-size: 18px;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.8s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
     margin: 20px 0;
-    width: auto;
 }
 
-.btn_InserirNovaReceita:hover, .btn_InserirNovoCurso:hover, .btn_InserirNovoPost:hover {
-    background-color: #1E3C13;
+.btn_InserirNovaReceita:hover,
+.btn_InserirNovoCurso:hover,
+.btn_InserirNovoPost:hover {
+    background-color: var(--cor-hover);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 .cursos {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.inscricao {
+    background-color: white;
+    height: 100%;
+    width: 500px;;
 }

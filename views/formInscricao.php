@@ -30,7 +30,7 @@
     </div>
     </div>
     <h2>Formulário de Inscrição</h2>
-    <form action="inscricao.php" method="POST">
+    <form class="inscricao" action="inscricao.php" method="POST">
         <label for="nome">Nome: </label>
         <input type="text" name="nome" placeholder="Nome:"> <br>
         <label for="email">Email: </label>
