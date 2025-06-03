@@ -148,7 +148,7 @@ final class CursosController extends Controller {
             // Enviar email em texto simples
             $mail->isHTML(false); // Definir formato do email para texto simples
             $mail->Subject = 'Inscrição Farmácia Verde';
-            $mail->Body    = 'Olá ' . $nome . 'sua inscrição foi mandada com sucesso. Aliás esse é o seu CPF: ' . $cpf;
+            $mail->Body    = 'Olá ' . $nome . 'sua inscrição foi encaminhada com sucesso. Aliás, esse é o seu CPF: ' . $cpf;
 
             // Enviar o email
             if(!$mail->send()){

@@ -368,6 +368,17 @@ h2 {
     background-color: #3a8a33;
 }
 
+.card .acoes a[href*="inscrever.php"] {
+    width: 100px;
+    height: 75px;
+    background-color: #4caf50;
+    color: white;
+}
+
+.card .acoes a[href*="inscrever.php"]:hover {
+    background-color: #3a8a33;
+}
+
 .login,
 .FormProdutos,
 .FormCategorias,
@@ -490,7 +501,7 @@ a {
     margin: 0 auto;
 }
 
-.btn_InserirNovaReceita, .btn_InserirNovoCurso {
+.btn_InserirNovaReceita, .btn_InserirNovoCurso, .btn_InserirNovoPost {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -504,7 +515,7 @@ a {
     width: auto;
 }
 
-.btn_InserirNovaReceita:hover, .btn_InserirNovoCurso:hover {
+.btn_InserirNovaReceita:hover, .btn_InserirNovoCurso:hover, .btn_InserirNovoPost:hover {
     background-color: #1E3C13;
 }
 

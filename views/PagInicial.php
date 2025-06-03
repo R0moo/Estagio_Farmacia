@@ -23,18 +23,8 @@
         <?php } else { ?>
             <a href="logout.php">Sair</a>
         <?php } ?>
-
-        <nav id="side-menu" class="hidden">
-            
-            <?php if (!$logado) { ?>
-                <a href="login.php">Login</a>
-            <?php } else { ?>
-                <a href="mostrarPerfil.php">Meu perfil</a>
-                <a href="logout.php">Sair</a>
-            <?php } ?>
-        </nav>
-
-
+        
+        <a href="mostrarPerfil.php">Meu perfil</a>
 
         <nav>
             <div class="nav_div">
@@ -44,13 +34,14 @@
                 <a href="Projetos.php" class="nav_link3">Projetos</a>
                 <a href="Cursos.php" class="nav_link4">Cursos</a>
 
+            </div>
         </nav>
     </div>
     </div>
 
     <h2>Projetos</h2>
     <?php if ($logado && isset($_SESSION['usuario']) && $_SESSION['usuario']->getNivel() === '1') { ?>
-        <a href="Projeto.php" class="btn">Inserir novo</a>
+        <a href="Projeto.php" class="btn_InserirNovoPost">Inserir novo</a>
     <?php } ?>
     <div class="projetos">
         <?php foreach ($Projetos as $projeto) { ?>
