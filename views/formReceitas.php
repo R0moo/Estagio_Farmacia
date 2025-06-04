@@ -45,7 +45,7 @@
         <input type="date" name="data_criacao" value="<?php echo $Receita->getDataCriacao(); ?>" placeholder="Data de Criação:">
         <br>
         <div class="btns_formReceitas">
-        <a class="btn-1" href='Receitas.php'>Voltar</a> <button type="submit">Salvar</a>
+        <a class="btn-1" href='Receitas.php'>Voltar</a> <button type="submit">Salvar</button>
         </div>
     </form>
 </div>

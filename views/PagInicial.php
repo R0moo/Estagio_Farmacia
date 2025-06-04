@@ -58,7 +58,7 @@
                     <div class="acoes">
                         <a href="Projeto.php?id=<?php echo $projeto->getId(); ?>">Editar</a>
                         <br>
-                        <a href="excluirProjetos.php?id=<?php echo $projeto->getId(); ?>">Deletar</a>
+                        <a href="excluirProjetos.php?id=<?php echo $projeto->getId(); ?>" class="deletar-link">Deletar</a>
                     </div>
                 <?php } ?>
             </div>
