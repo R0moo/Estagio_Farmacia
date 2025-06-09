@@ -189,6 +189,11 @@ head {
     flex-grow: 0;
 }
 
+.header_description:hover {
+    background-color: var(--cor-hover);
+    transition: ease 0.3s;
+}
+
 .user_icon {
     color: black;
     font-size: 24px;
@@ -537,14 +542,14 @@ a {
     color: white;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .cabecalho {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         text-align: left;
     }
-}
+} */
 
 @media (max-width: 480px) {
     header h1 {
