@@ -538,14 +538,13 @@ a {
     color: white;
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
     .cabecalho {
-        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         text-align: left;
     }
-} */
+}
 
 @media (max-width: 480px) {
     header h1 {

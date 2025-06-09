@@ -49,10 +49,6 @@ body {
 }
 
 .auth_links a {
-    font-family: "Josefin Sans", sans-serif;
-    font-style: italic;
-    font-size: 14px;
-    color: #3e693e;
     margin: 0 10px;
     text-decoration: none;
 }
@@ -542,14 +538,13 @@ a {
     color: white;
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
     .cabecalho {
-        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         text-align: left;
     }
-} */
+}
 
 @media (max-width: 480px) {
     header h1 {
