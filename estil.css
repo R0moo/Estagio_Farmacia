@@ -49,6 +49,644 @@ body {
 }
 
 .auth_links a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.auth_links a:hover {
+    text-decoration: underline;
+    transition: ease 0.3s;
+    color: white;
+}
+
+nav {
+    background-color: #D4ECC7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+    margin-left: 0;
+    gap: 10px;
+}
+
+.nav_div {
+    margin-top: 20px;
+}
+
+.nav_div a {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 16px;
+    color: var(--cor-tema);
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav_div a.active {
+    background-color: var(--cor-tema);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+}
+
+.postagens,
+.usuarios,
+.categorias,
+.projetos {
+    display: flex;
+
+}
+
+.btn_Login {
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    height: 35px;
+    width: 100px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    transition: background 0.3s ease;
+}
+
+.btn_Login:hover {
+    cursor: pointer;
+}
+
+.btns_formReceitas {
+    background-color: transparent;
+    padding: 15px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btns_formReceitas a,
+.btns_formReceitas button {
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn_Login, .btns_formReceitas, .btns_formCursos button {
+    background-color: var(--cor-tema);
+}
+
+.btn_Login:hover, .btns_formReceitas button:hover, .btns_formCursos button:hover {
+    background-color: var(--cor-hover);
+}
+
+head {
+    background-color: #D4ECC7;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.farmaciaVerde_titulo {
+    display: flex;
+    flex-direction: row;
+}
+
+.verde {
+    font-family: "Poetsen One", sans-serif;
+    font-size: 36px;
+    color: #5A8457;
+    text-shadow: 1px 1px #3e693e;
+}
+
+.branco {
+    font-family: "Poetsen One", sans-serif;
+    font-size: 36px;
+    color: white;
+    text-shadow: 1px 1px #3e693e;
+}
+
+.header_description {
+    font-family: "Josefin Sans", sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #3e693e;
+    margin: 15px 0 25px;
+    margin-left: 0;
+    text-align: center;
+    white-space: normal;
+    flex-grow: 0;
+}
+
+.header_description:hover {
+    background-color: var(--cor-hover);
+    transition: ease 0.3s;
+}
+
+.user_icon {
+    color: black;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+label, .recupera_Senha, .Logar, .solicita_Acesso, .logOutIn {
+    color: var(--cor-tema);
+}
+
+label:hover, .Logar:hover {
+    color: var(--cor-hover);
+}
+
+.container_login input:hover {
+    transition: ease-in-out 3s;
+    background-color: #c9c9c9;
+}
+
+.container_login input:focus {
+    border: none;
+}
+
+.FormReceitas, .FormCursos {
+    width: 100%;
+    background-color: #D4ECC7;
+}
+
+.container_login input[type="text"],
+.container_login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    font-style: italic;
+    font-size: 13px;
+    background-color: #ECECEC;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+}
+
+.container_formReceitas {
+    height: 90%;
+    width: 450px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    gap: 10px;
+}
+
+.container_formReceitas {
+    height: 90%;
+    width: 450px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    gap: 10px;
+}
+
+.container_formReceitas h1, .container_formCursos h1 {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.container_formReceitas input, .container_formCursos input {
+    width: 80%;
+    padding: 10px;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    font-style: italic;
+    font-size: 13px;
+    background-color: #ECECEC;
+    height: 45px;
+    border-radius: 15px;
+    border: none;
+}
+
+.container_formReceitas input:hover, .container_formCursos input:hover{
+    transition: ease-in-out 3s;
+    background-color: #c9c9c9;
+}
+
+.container_formReceitas input:focus, .container_formCursos input:focus {
+    border: none;
+}
+
+.btns_formReceitas button,
+.btns_formReceitas a,
+.btns_formCursos button,
+.btns_formCursos a {
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    transition: background 0.3s ease;
+}
+
+.btns_formReceitas button, .btns_formCursos button {
+    height: 35px;
+    width: 100px;
+    background-color: #0eac0e;
+}
+
+.btns_formReceitas a, .btns_formCursos a {
+    height: 70px;
+    width: 200px;
+    background-color: #fd3a36 ;
+}
+
+.btns_formReceitas button:hover, .btns_formCursos button:hover {
+    background-color: #1E3C13;
+    cursor: pointer;
+}
+
+.btns_formReceitas a:hover, .btns_formCursos a:hover {
+    cursor: pointer;
+    background-color: #9c2422;
+}
+
+h1, h2 {
+    color: var(--cor-tema);
+    transition: color 0.3 ease;
+}
+
+h1:hover, h2:hover {
+    color: var(--cor-hover);
+}
+
+h2 {
+    margin: 10px;
+    font-size: 28pt;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    background-color: #fff;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card > h3 {
+    font-family: "Poetsen One", cursive;
+    font-size: 26px;
+    color: #5A8457;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card p {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 14px;
+    color: #3e693e;
+    text-align: justify;
+    margin-bottom: 12px;
+}
+
+.card ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    color: #3e693e;
+}
+
+.card ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.card .acoes {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.card .acoes a {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: none;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.card .acoes a[href*="Projeto.php"] {
+    background-color: var(--cor-tema);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.card .acoes a[href*="Projeto.php"]:hover {
+    background-color: var(--cor-hover);
+}
+
+.card .acoes a[href*="Receita"] {
+    background-color: #4caf50;
+}
+
+.card .acoes a[href*="Receita"]:hover {
+    background-color: #3a8a33;
+}
+
+.card .acoes a[href*="excluir"] {
+    background-color: #f44336;
+}
+
+.card .acoes a[href*="excluir"]:hover {
+    background-color: #b73124;
+}
+
+.card .acoes a[href*="Curso.php"] {
+    background-color: #4caf50;
+}
+
+.card .acoes a[href*="Curso.php"]:hover {
+    background-color: #3a8a33;
+}
+
+.card .acoes a[href*="inscrever.php"] {
+    width: 100px;
+    height: 75px;
+    background-color: #4caf50;
+    color: white;
+}
+
+.card .acoes a[href*="inscrever.php"]:hover {
+    background-color: #3a8a33;
+}
+
+.login,
+.FormProdutos,
+.FormCategorias,
+.FormUsuarios,
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container_login {
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF8F8;
+    padding: 30px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.container_login label {
+    display: block;
+    margin-bottom: 5px;
+    color: #3e693e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+form {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn {
+    margin: 10px;
+}
+
+.btns,
+.btn {
+    margin-top: 10px;
+}
+
+.btns>a,
+.btns>button,
+.btn {
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    font-size: 11pt;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+    background-color: aliceblue;
+}
+
+.btns>a:hover,
+.btns>button:hover,
+.btn:hover {
+    cursor: pointer;
+    background-color: rgb(209, 233, 255);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav_link1, .nav_link2, .nav_link3, .nav_link4 {
+    margin: 20px;
+    top: 20px;
+}
+
+.nav_link1:active, .nav_link2:active, .nav_link3:active, .nav_link4:active {
+    background-color: #1E3C13;
+    color: white;
+}
+
+/* @media (min-width: 768px) {
+    .cabecalho {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+} */
+
+@media (max-width: 480px) {
+    header h1 {
+      font-size: 32px;
+    }
+  
+    .container_login {
+      padding: 20px;
+    }
+  }
+
+.projetos, .postagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding: 30px;
+    gap: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin-top: 30px;
+}
+
+.header_navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.receitas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px 10px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn_InserirNovaReceita,
+.btn_InserirNovoCurso,
+.btn_InserirNovoPost {
+    background-color: #5A8457;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    margin: 20px 0;
+}
+
+.btn_InserirNovaReceita:hover,
+.btn_InserirNovoCurso:hover,
+.btn_InserirNovoPost:hover {
+    background-color: var(--cor-hover);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.cursos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.inscricao {
+    background-color: white;
+    height: 100%;
+    width: 500px;;
+}
+
+.estudante_Form a[href*="Estudantes"] {
+    background-color: #f44336;
+}
+
+.estudante_Form a[href*="Estudantes"]:hover {
+    background-color: #b73124;
+}
+
+.estudante_Form button .btn_Enviar {
+    background-color: #4caf50;
+}
+
+.estudante_Form button .btn_Enviar:hover {
+    background-color: #3a8a33;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+    --cor-tema: #5A8457;
+    --cor-hover: #0eac0e;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.login_body{
+    background-color: #D4ECC7;
+    gap: 15px;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #D4ECC7;
+    width: 100%;
+    padding: 20px 10px 40px;
+    padding-bottom: 40px;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth_links {
+    margin-top: 10px;
+}
+
+.auth_links a {
     font-family: "Josefin Sans", sans-serif;
     font-style: italic;
     font-size: 14px;

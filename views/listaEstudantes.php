@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudantes - <?php echo $curso ? $curso->getTitulo() : 'Sem curso'; ?></title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estil.css">
 </head>
 
 <script src="script.js"></script>
