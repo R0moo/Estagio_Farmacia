@@ -1,20 +1,18 @@
-# Ignora a pasta vendor (dependências do Composer)
-vendor/
-
-# Arquivos de ambiente (como .env)
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
 .env
-
-# Cache e logs
-storage/logs/
-storage/framework/cache/
-storage/framework/views/
-
-# Arquivos de IDE (como PHPStorm)
-.idea/
-*.swp
-*.swo
-
-# Arquivos de sistema (macOS)
-.DS_Store
-
-vendor/
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
