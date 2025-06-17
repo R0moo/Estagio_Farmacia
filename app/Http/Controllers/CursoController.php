@@ -7,17 +7,34 @@ use App\Models\Curso;
 Use App\Models\Projeto;
 use App\Models\Estudante;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\SolicitarInscricao;
+use App\Mail\InscricaoCursoMail;
 use Illuminate\Support\Facades\Mail;
 
 class CursoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {   
         $cursos = Curso::all();
         $routeName = request()->route()->getName();
-    
+
     if ($routeName === 'cursos.index') {
+        if ($request->has('curso_id') && $request->has('show_modal')) {
+
+        $curso = Curso::findorFail($request->curso_id);
+        
+        if (!$curso) {
+            abort(404);
+        }
+        
+        $user = auth()->user();
+        $shouldOpenModal = !$user || ($user->isStudent() && !$user->cursos->contains($curso->id));
+            if ($shouldOpenModal) {
+            return view('cursos.index', [
+                'cursos' => $cursos,
+                'modalData' => $curso
+            ]);
+            }
+            }
         return view('cursos.index', compact('cursos'));
     } else{
         return view('projetos.show', compact('cursos'));
@@ -34,7 +51,7 @@ public function create(Projeto $projeto, Curso $curso)
     {
     $validated = $request->validate([
         'titulo' => 'required|string|max:255',
-        'resumo' => 'nullable|string',
+        'resumo' => 'nullable|text',
         'vagas' => 'required|integer',
         'materiais' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
         'carga_horaria' => 'required|integer',
@@ -63,6 +80,16 @@ public function create(Projeto $projeto, Curso $curso)
     public function show($id)
     {   
         $curso = Curso::findOrFail($id);
+
+        $user = auth()->user();
+        $isGuestOrStudent = !$user || ($user->isStudent() && !$user->cursos->contains($curso->id));
+        if ($isGuestOrStudent) {
+            if (request()->expectsJson()) {
+                return response()->json($curso);
+            }
+            return view('cursos.modal-content', compact('curso'));
+        }
+
         $estudantes = Estudante::all();
         return view('projetos.cursos.show', compact('curso', 'estudantes'));
     }
@@ -76,7 +103,7 @@ public function update(Request $request, Projeto $projeto, Curso $curso)
 {
     $validated = $request->validate([
         'titulo' => 'required|string|max:255',
-        'resumo' => 'nullable|string',
+        'resumo' => 'nullable',
         'vagas' => 'required|integer',
         'materiais' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
         'carga_horaria' => 'required|integer',
@@ -109,13 +136,30 @@ public function update(Request $request, Projeto $projeto, Curso $curso)
         return redirect()->route('projetos.show', compact('projetos'))->with('success', 'Curso removido com sucesso!');
     }
 
-    public function solicitarInscricao(Request $request, $cursoId)
-{
-    $curso = Curso::findOrFail($cursoId);
-    $estudante = auth()->user();
+    public function inscrever(Curso $curso)
+    {
+    return view('cursos.form-inscricao', compact('curso'));
+    }
 
-    Mail::to('romo@exemplo.com')->send(new SolicitarInscricao($curso, $estudante));
+    public function processarInscricao(Request $request, Curso $curso){
+    $request->validate([
+        'nome' => 'required|string|max:100',
+        'email' => 'required|email',
+        'cpf' => 'required|string|max:11',
+        'ocupacao' => 'required|string|max:100',
+    ]);
 
-    return redirect()->back()->with('success', 'Solicitação de inscrição enviada com sucesso!');
-}
+    $dados = $request->only(['nome', 'email', 'cpf', 'ocupacao']);
+    $dados['curso_nome'] = $curso->titulo; 
+
+    Mail::to('romo@exemplo.com')->send(new InscricaoCursoMail($dados));
+
+    return redirect()->route('cursos.index')->with('success', 'Solicitação de inscrição enviada com sucesso!');
+    }
+    public function showModal(Curso $curso){
+    return redirect()->route('cursos.index', [
+        'show_modal' => 1,
+        'curso_id' => $curso->id,
+    ]);
+    }
 }

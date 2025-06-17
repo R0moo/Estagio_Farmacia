@@ -47,7 +47,13 @@
             </div>
             <div class="p-6 max-w-max flex flex-row text-center items-center ">
                 @foreach ($projeto->cursos as $curso)
-                <a href="{{ route('projetos.cursos.show', [$projeto, $curso]) }}">
+                @auth
+        @if (Auth::user()->isAdmin() || Auth::user()->isModerator() || Auth::user()->isStudent() && Auth::user()->curso_id == $curso->id)
+            <a href="{{ route('projetos.cursos.show', [$projeto, $curso]) }}">
+        @endauth
+        @else
+            <a href="{{route('cursos.index', ['show_modal' => 1, 'curso_id' => $curso->id])}}">
+        @endif
             <x-card titulo="{{ $curso->titulo }}" imagem="{{ $curso->imagem ? asset('storage/' . $curso->imagem) : null }}" width="280px">
                 </a>
                  @auth

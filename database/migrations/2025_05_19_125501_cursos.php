@@ -16,7 +16,7 @@ public function up()
     Schema::create('cursos', function (Blueprint $table) {
         $table->id();
         $table->string('titulo', 100);
-        $table->string('resumo', 100);
+        $table->text('resumo');
         $table->integer('vagas');
         $table->text('materiais')->nullable();
         $table->integer('carga_horaria');

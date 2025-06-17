@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::resource('projetos.cursos', CursoController::class);
 Route::resource('projetos.cursos.estudantes', EstudanteController::class);
 Route::resource('avaliacoes', AvaliacaoController::class);
@@ -42,6 +43,9 @@ Route::resource('projetos', ProjetoController::class);
 Route::resource('projetos.postagens', PostagemController::class)->parameters(['postagens' => 'postagem']);
 Route::resource('receitas', ReceitaController::class);
 Route::resource('cursos', CursoController::class);
+Route::get('cursos/modal/{curso}', [CursoController::class, 'showModal'])->name('cursos.modal');
+Route::post('/cursos/{curso}/inscrever', [CursoController::class, 'processarInscricao'])->name('cursos.inscrever.store');
+Route::get('/cursos/{curso}/inscrever', [CursoController::class, 'inscrever'])->name('cursos.inscrever');
 
 Route::middleware(['auth'])->group(function () {
     
