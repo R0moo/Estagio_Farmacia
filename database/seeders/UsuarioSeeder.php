@@ -16,11 +16,11 @@ class UsuarioSeeder extends Seeder
      */
     public function run()
     {
-        if (!User::where('email', 'roditto123@gmail.com')->exists()) {
+        if (!User::where('email', 'admin@gmail.com')->exists()) {
             User::create([
-                'name' => 'Romo',
-                'email' => 'roditto123@gmail.com',
-                'password' => Hash::make('ashgre123'),
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('admin'),
                 'nivel' => 'admin',
                 'email_verified_at' => now(),
             ]);

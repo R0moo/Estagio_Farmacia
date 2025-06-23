@@ -16,7 +16,7 @@
             </div> 
             <div class="p-6 max-w-max flex flex-row text-center items-center ">
                 @foreach($projeto->postagens as $postagem)
-                    <a href="{{ route('projetos.postagens.show', [$projeto, $postagem]) }}">
+                    <a href="{{ route('projetos.postagens.index', [$projeto, 'show_modal' => 1, 'postagem_id' => $postagem->id]) }}">
                         <x-card titulo="{{ $postagem->titulo }}" imagem="{{ $postagem->foto ? asset('storage/' . $postagem->foto) : null }}" width="280px">
                     </a>
                     @auth
@@ -50,10 +50,11 @@
                 @auth
         @if (Auth::user()->isAdmin() || Auth::user()->isModerator() || Auth::user()->isStudent() && Auth::user()->curso_id == $curso->id)
             <a href="{{ route('projetos.cursos.show', [$projeto, $curso]) }}">
-        @endauth
+                
         @else
             <a href="{{route('cursos.index', ['show_modal' => 1, 'curso_id' => $curso->id])}}">
         @endif
+            @endauth
             <x-card titulo="{{ $curso->titulo }}" imagem="{{ $curso->imagem ? asset('storage/' . $curso->imagem) : null }}" width="280px">
                 </a>
                  @auth
@@ -75,4 +76,31 @@
         </div>
     </div>
 </div>
+
+        @isset($modalData)
+    <div class="fixed inset-0 bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-min mx-4">
+
+            <div class="flex justify-center items-center border-b p-2">
+                <div class="flex flex-col items-center">
+                    @if ($postagem->foto)
+                <img src="{{ asset('storage/' . $modalData->foto) }}" alt="postagem" style="max-width:20rem"> <br>
+                @endif
+                <h3 class="text-xl font-bold text-[#3e693e]">{{ $modalData->titulo }}</h3>
+                </div>
+            </div>
+
+            <div class="p-4 text-[#3e693e]">
+                <p><strong>Descrição:</strong> {{ $modalData->descricao }}</p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex justify-end border-t p-2">
+                <x-back-link href="{{ route('projetos.show', $projeto) }}" class="mr-2">
+                    Fechar
+                </x-back-link>
+            </div>
+        </div>
+    </div>
+@endisset
 </x-app-layout>

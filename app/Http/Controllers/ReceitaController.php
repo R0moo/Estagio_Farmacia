@@ -8,9 +8,28 @@ use Illuminate\Support\Facades\Storage;
 
 class ReceitaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $receitas = Receita::all();
+
+        if($request){
+        if ($request->has('receita_id') && $request->has('show_modal')) {
+
+        $receita = Receita::findorFail($request->receita_id);
+        $ingredientesArray = array_map('trim', explode(',', $receita->ingredientes));
+        if (!$receita) {
+            abort(404);
+        }
+        
+            return view('receitas.index', [
+                'receitas' => $receitas,
+                'modalData' => $receita,
+                'ingredientes' => $ingredientesArray
+            ]);
+            
+            }
+        }
+
         return view('receitas.index', compact('receitas'));
     }
 
@@ -43,19 +62,6 @@ public function store(Request $request)
 
     return redirect()->route('receitas.index')->with('success', 'Receita criada com sucesso!');
 }
-
-
-public function show(Receita $receita)
-{
-    $ingredientesArray = array_map('trim', explode(',', $receita->ingredientes));
-
-    return view('receitas.show', [
-        'receita' => $receita,
-        'ingredientesArray' => $ingredientesArray
-    ]);
-}
-
-
     public function edit($id)
     {
         $receita = Receita::findOrFail($id);

@@ -31,10 +31,10 @@ class Curso extends Model
         return $this->hasMany(Estudante::class);
     }
 
-    public function avaliacoes()
-    {
-        return $this->hasMany(Avaliacao::class);
-    }
+public function avaliacoes()
+{
+    return $this->hasMany(Avaliacao::class, 'curso_id', 'id');
+}
 
     public function projeto()
     {

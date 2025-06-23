@@ -33,6 +33,10 @@ class CursoController extends Controller
                 'cursos' => $cursos,
                 'modalData' => $curso
             ]);
+            }else{
+                $projeto = $curso->projeto;
+                $estudantes = Estudante::all();
+                return view('projetos.cursos.show', compact('projeto', 'curso', 'estudantes', ));
             }
             }
         return view('cursos.index', compact('cursos'));
@@ -51,7 +55,7 @@ public function create(Projeto $projeto, Curso $curso)
     {
     $validated = $request->validate([
         'titulo' => 'required|string|max:255',
-        'resumo' => 'nullable|text',
+        'resumo' => 'nullable',
         'vagas' => 'required|integer',
         'materiais' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
         'carga_horaria' => 'required|integer',
@@ -77,22 +81,15 @@ public function create(Projeto $projeto, Curso $curso)
     return redirect()->route('projetos.show', ["projeto" => $projeto])->with('success', 'Curso criado com sucesso!');
     }
 
-    public function show($id)
-    {   
-        $curso = Curso::findOrFail($id);
-
-        $user = auth()->user();
-        $isGuestOrStudent = !$user || ($user->isStudent() && !$user->cursos->contains($curso->id));
-        if ($isGuestOrStudent) {
-            if (request()->expectsJson()) {
-                return response()->json($curso);
-            }
-            return view('cursos.modal-content', compact('curso'));
-        }
-
-        $estudantes = Estudante::all();
-        return view('projetos.cursos.show', compact('curso', 'estudantes'));
+    public function show(Projeto $projeto, Curso $curso)
+{
+    if ($curso->projeto_id != $projeto->id) {
+        abort(404);
     }
+
+    $estudantes = Estudante::all();
+    return view('projetos.cursos.show', compact('projeto', 'curso', 'estudantes', ));
+}
 
 public function edit(Projeto $projeto, Curso $curso)
 {
@@ -155,11 +152,5 @@ public function update(Request $request, Projeto $projeto, Curso $curso)
     Mail::to('romo@exemplo.com')->send(new InscricaoCursoMail($dados));
 
     return redirect()->route('cursos.index')->with('success', 'Solicitação de inscrição enviada com sucesso!');
-    }
-    public function showModal(Curso $curso){
-    return redirect()->route('cursos.index', [
-        'show_modal' => 1,
-        'curso_id' => $curso->id,
-    ]);
     }
 }

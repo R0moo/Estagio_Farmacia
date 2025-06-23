@@ -10,9 +10,27 @@ use Illuminate\Support\Facades\Storage;
 
 class PostagemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $postagens = Postagem::all();
+
+        if($request){
+        if ($request->has('postagem_id') && $request->has('show_modal')) {
+
+        $postagem = postagem::findorFail($request->postagem_id);
+        $projeto = $postagem->projeto;
+        if (!$postagem) {
+            abort(404);
+        }
+        
+            return view('projetos.show', [
+                'postagens' => $postagens,
+                'modalData' => $postagem,
+                'projeto' => $projeto
+            ]);
+            
+            }
+        }
         return view('projetos.show', compact('postagens'));
     }
 

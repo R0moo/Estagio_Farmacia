@@ -11,10 +11,10 @@
         @auth
         @if (Auth::user()->isAdmin() || Auth::user()->isModerator() || Auth::user()->isStudent() && Auth::user()->curso_id == $curso->id)
     <a href="{{route('projetos.cursos.show', [$curso->projeto, $curso]) }}">
-        @endauth
         @else
     <a href="{{route('cursos.index', ['show_modal' => 1, 'curso_id' => $curso->id])}}">
         @endif
+        @endauth
         <x-card titulo="{{ $curso->titulo }}" imagem="{{ $curso->imagem ? asset('storage/' . $curso->imagem) : null }}" width="280px">   
     
     <p>

@@ -14,6 +14,15 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- CSS para os gráficos -->
+        <style>
+            .chart-container {
+                position: relative;
+                height: 200px;
+                width: 100%;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen">
@@ -21,7 +30,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class=" shadow">
+                <header class="shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -33,5 +42,8 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @stack('scripts')
+
     </body>
 </html>

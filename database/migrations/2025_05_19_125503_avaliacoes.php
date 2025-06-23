@@ -34,6 +34,7 @@ public function up()
         }
 
         $table->text('comentario')->nullable();
+        $table->timestamps();
 
         $table->foreign('estudante_id')->references('id')->on('estudantes');
         $table->foreign('curso_id')->references('id')->on('cursos');
