@@ -17,11 +17,10 @@ public function up()
         $table->id();
         $table->string('titulo');
         $table->text('descricao');
-        $table->string('capa');
+        $table->string('capa')->nullable();
         $table->char('cor1', 7);
         $table->char('cor2', 7);
         $table->timestamps();
-        $table->softDeletes();
         
     });
 }

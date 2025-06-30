@@ -25,24 +25,65 @@ class User extends Authenticatable
     public function estudante(){
         return $this->hasOne(Estudante::class);
     }
-public function hasNivel($nivel)
+ public function hasNivel($nivel)
+    {
+        return strtolower($this->nivel) === strtolower($nivel);
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasNivel('admin');
+    }
+
+    public function isModerator()
+    {
+        return $this->hasNivel('moderador');
+    }
+
+    public function isStudent()
+    {
+        return $this->hasNivel('estudante');
+    }
+
+    public function canAccessCourse($cursoId)
+    {
+        if ($this->isAdmin() || $this->isModerator()) {
+        return true;
+        }
+
+        if ($this->isStudent()) {
+            return optional($this->estudante)->curso_id == $cursoId;
+        }
+
+        return false;
+    }
+
+    public function hasAccessToCourse($cursoId): bool
 {
-    return $this->nivel == $nivel;
+    if ($this->isAdmin() || $this->isModerator()) {
+        return true;
+    }
+
+    if (!$this->isStudent() || !$this->estudante) {
+        return false;
+    }
+    return $this->estudante->curso_id == $cursoId;
+
 }
 
-public function isAdmin()
+public function checkCourseAccess($cursoId)
 {
-    return $this->nivel === 'admin';
-}
+    $user = auth()->user();
+    
+    if ($user->isAdmin() || $user->isModerator()) {
+        return true;
+    }
 
-public function isModerator()
-{
-    return $this->nivel === 'moderador';
-}
+    if ($user->isStudent()) {
+        return $user->estudante && $user->estudante->curso_id == $cursoId;
+    }
 
-public function isStudent()
-{
-    return $this->nivel === 'estudente';
+    return false;
 }
 
 

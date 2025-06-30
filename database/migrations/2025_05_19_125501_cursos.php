@@ -22,10 +22,9 @@ public function up()
         $table->integer('carga_horaria');
         $table->date('data_inicio');
         $table->date('data_fim');
-        $table->text('imagem');
+        $table->text('imagem')->nullable();
         $table->unsignedBigInteger('projeto_id');
         $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');;
-        $table->softDeletes();
         $table->timestamps();
     });
 }

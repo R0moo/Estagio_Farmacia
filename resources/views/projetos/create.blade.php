@@ -20,7 +20,7 @@
       <x-textarea name="descricao" id="descricao" required></x-textarea><br>
 
       <x-input-label for="capa">Capa:</x-input-label>
-       <x-file-input type="file" name="capa" id="capa" required/><br>
+       <x-file-input type="file" name="capa" id="capa"/><br>
 
        <x-input-label for="cor1">Cor 1:</x-input-label>
        <x-text-input type="color" name="cor1" id="cor1" required/><br>

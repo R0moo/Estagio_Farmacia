@@ -16,13 +16,13 @@
         <x-text-input name="titulo" placeholder="Título:" required/>
 
         <x-input-label for="descricao">Descrição: </x-input-label>
-        <x-textarea name="descricao" required>{{ old('descricao') ?? 'Descrição:' }}</x-textarea>
+        <x-textarea name="descricao" required placeholder="Descrição:">{{ old('descricao') }}</x-textarea>
 
         <x-input-label for="ingredientes">Ingredientes: </x-input-label>
-        <x-textarea name="ingredientes" required>{{old('ingredientes') ?? 'Ex: 2 ovos, SEPARE POR VIRGULAS'}}</x-textarea>
+        <x-textarea name="ingredientes" required placeholder="Ex: 2 ovos, SEPARE POR VIRGULAS">{{old('ingredientes')}}</x-textarea>
 
         <x-input-label for="modo_preparo">Modo de Preparo: </x-input-label>
-        <x-textarea name="modo_preparo">{{old('modo_preparo') ?? 'Modo de Preparo:'}}</x-textarea>
+        <x-textarea name="modo_preparo" placeholder="Modo de Preparo:">{{old('modo_preparo')}}</x-textarea>
 
         <x-input-label for="tempo_preparo">Tempo de Preparo (em minutos): </x-input-label>
         <x-text-input type="number" name="tempo_preparo" placeholder="Tempo de preparo:"/>

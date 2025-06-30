@@ -17,7 +17,7 @@ public function up()
         $table->id();
         $table->string('titulo');
         $table->text('descricao');
-        $table->string('foto');
+        $table->string('foto')->nullable();
         $table->unsignedBigInteger('projeto_id');
         $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');;
         $table->timestamps();

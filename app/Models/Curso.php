@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Curso extends Model
 {   
-    use SoftDeletes;
     use HasFactory;
     
 
@@ -26,6 +25,10 @@ class Curso extends Model
         'projeto_id'
     ];
 
+public function materiais(): HasMany
+    {
+        return $this->hasMany(Material::class, 'curso_id');
+    }
     public function estudantes()
     {
         return $this->hasMany(Estudante::class);

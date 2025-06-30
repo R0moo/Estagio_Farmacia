@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'nivel' => \App\Http\Middleware\CheckNivel::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'moderador' => \App\Http\Middleware\ModeratorMiddleware::class,
+        'estudante' => \App\Http\Middleware\EstudanteMiddleware::class,
+        'course.access' => \App\Http\Middleware\CheckCourseAccess::class,
     ];
 }

@@ -8,12 +8,12 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-row flex-wrap">
 
                 @foreach ($users as $user)
-                <a href="{{ route('usuarios.show', $user) }}">
+                
                 <x-card 
                 titulo="{{ $user->name }}"
                 imagem="{{ $user->capa ? asset('storage/' . $user->capa) : null }}"
                 width="280px"
-                ></a>
+                >
                 <p>{{ $user->email }}</p>
                 <p>{{ $user->nivel }}</p>
                 <x-slot name="acoes">

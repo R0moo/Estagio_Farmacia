@@ -1,4 +1,4 @@
-    <x-app-layout>
+<x-app-layout>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-[#5A8457]">
@@ -26,7 +26,7 @@
         <form action="{{ route('projetos.destroy', $projeto->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <x-delete-button type="submit" onclick="confirm('Deseja excluir mesmo?')">
+            <x-delete-button type="submit" onclick="return confirm('Deseja excluir mesmo?')">
                 Excluir
             </x-delete-button>
         </form>

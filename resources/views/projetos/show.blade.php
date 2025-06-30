@@ -3,7 +3,7 @@
 <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-[#5A8457]">
             <div class="p-6">
-                <p>{{ $projeto->descricao }}</p>
+                <p class="break-all">{{ $projeto->descricao }}</p>
             </div>
             <hr class="w-3/4 justify-self-center text-[#5A8457]">
             <div class="p-6 text-gray-900 dark:text-gray-100">      
@@ -26,7 +26,7 @@
                             <form action="{{ route('projetos.postagens.destroy', [$projeto, $postagem]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <x-delete-button type="submit" onclick="confirm('Deseja excluir mesmo?')">
+                                <x-delete-button type="submit" onclick="return confirm('Deseja excluir mesmo?')">
                                     Excluir
                                 </x-delete-button>
                             </form>
@@ -64,7 +64,7 @@
                     <form action="{{ route('projetos.cursos.destroy', [$projeto, $curso]) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <x-delete-button type="submit" onclick="confirm('Deseja excluir mesmo?')">
+                        <x-delete-button type="submit" onclick="return confirm('Deseja excluir mesmo?')">
                             Excluir
                         </x-delete-button>
                     </form>

@@ -22,7 +22,7 @@
                 <form action="{{ route('receitas.destroy', $receita->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                    <x-delete-button type="submit" onclick="confirm('Deseja excluir mesmo?')">
+                    <x-delete-button type="submit" onclick="return confirm('Deseja excluir mesmo?')">
                         Excluir
                     </x-delete-button>
                 </form>
@@ -57,7 +57,7 @@
                     @endforeach
                 </ul>
                 <p><strong>Modo de Preparo:</strong> {{ $modalData->modo_preparo }}</p>
-                <p><strong>Tempo de Preparo:</strong> {{ $modalData->rendimento }} minutos</p>
+                <p><strong>Tempo de Preparo:</strong> {{ $modalData->tempo_preparo }} minutos</p>
                 <p><strong>Rendimento:</strong> {{ $modalData->rendimento }}</p>
                 <p><strong>Categoria:</strong> {{ $modalData->categoria }}</p>
             </div>
