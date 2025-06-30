@@ -38,7 +38,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('cursos', CursoController::class)->only('index');
-Route::get('cursos/modal/{curso}', [CursoController::class, 'showModal'])->name('cursos.modal');
 
 Route::resource('receitas', ReceitaController::class);
 Route::get('receitas/modal/{receita}', [ReceitaController::class, 'showModal'])->name('receitas.modal');
@@ -52,9 +51,6 @@ Route::resource('projetos.postagens', PostagemController::class)->parameters(['p
 
 Route::post('/cursos/{curso}/inscrever', [CursoController::class, 'processarInscricao'])->name('cursos.inscrever.store');
 Route::get('/cursos/{curso}/inscrever', [CursoController::class, 'inscrever'])->name('cursos.inscrever');
-
-Route::get('/cursos/{curso}/avaliar', [AvaliacaoController::class, 'create'])->name('cursos.avaliacoes.create');
-Route::post('/cursos/{curso}/avaliar', [AvaliacaoController::class, 'store'])->name('cursos.avaliacoes.store');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -80,6 +76,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['course.access'])->group(function () {
         Route::resource('projetos.cursos', CursoController::class)->only('show');
+    });
+
+    Route::middleware(['course.access', 'curso.finalizado'])->group(function () {
+    Route::get('/cursos/{curso}/avaliar', [AvaliacaoController::class, 'create'])->name('cursos.avaliacoes.create');
+    Route::post('/cursos/{curso}/avaliar', [AvaliacaoController::class, 'store'])->name('cursos.avaliacoes.store');
     });
 
     Route::middleware(['admin'])->group(function () {

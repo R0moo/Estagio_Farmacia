@@ -7,6 +7,7 @@ use App\Models\Curso;
 Use App\Models\Projeto;
 use App\Models\Estudante;
 use App\Models\Solicitacao;
+use App\Models\Material;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\NovaInscricaoMail;
 use Illuminate\Support\Facades\Mail;
@@ -103,7 +104,7 @@ public function create(Projeto $projeto)
     }
 
     $estudantes = Estudante::all();
-    $materiais = \App\Models\Material::where('curso_id', $curso->id)->get();
+    $materiais = Material::where('curso_id', $curso->id)->get();
     return view('projetos.cursos.show', compact('projeto', 'curso', 'estudantes', 'materiais'));
 
 }

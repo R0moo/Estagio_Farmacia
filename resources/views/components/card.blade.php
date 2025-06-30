@@ -15,7 +15,7 @@
     @endif
     
     @if($titulo)
-        <h3 class="card-verde">{{ $titulo }}</h3>
+        <h3 class="card-verde truncate overflow-hidden whitespace-nowrap w-[250px]">{{ $titulo }}</h3>
     @endif
     
     {{ $slot }}

@@ -35,6 +35,6 @@ if ($user->estudante && $user->estudante->curso_id == $curso->id) {
         }
 
         // Redireciona outros casos para a modal
-        return redirect()->route('cursos.modal', $curso);
+        return redirect()->route('cursos.index');
     }
 }

@@ -25,4 +25,9 @@ class Postagem extends Model
     {
         return $this->belongsTo(Projeto::class);
     }
+
+    public function imagens()
+    {
+    return $this->hasMany(PostagemImagem::class);
+    }
 }
