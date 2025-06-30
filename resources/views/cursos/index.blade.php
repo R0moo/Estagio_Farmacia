@@ -45,33 +45,55 @@
     
 @isset($modalData)
     <!-- Overlay (fundo escuro) -->
-    <div class="fixed inset-0 bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto">
         <!-- Modal Container -->
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl mx-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl mx-4 max-h-[90vh] flex flex-col">
             <!-- Modal Header -->
-            <div class="flex justify-between items-center border-b p-2">
+            <div class="flex justify-between items-center border-b p-4 sticky top-0 bg-white z-10">
                 <h3 class="text-xl font-bold text-[#3e693e]">{{ $modalData->titulo }}</h3>
-                <a href="{{ route('cursos.index') }}" class="text-[#3e693e]">
+                <a href="{{ route('cursos.index') }}" class="text-[#3e693e] hover:text-[#2a4a2a] text-2xl font-bold">
                     &times;
                 </a>
             </div>
 
-            <div class="p-4 text-[#3e693e]">
-                <p><strong>Resumo:</strong> {{ $modalData->resumo }}</p>
-                <p><strong>Carga horária:</strong> {{ $modalData->carga_horaria }}</p>
-                <p><strong>Vagas:</strong> {{ $modalData->vagas }}</p>
-                <p><strong>Data de início:</strong> {{ \Carbon\Carbon::parse($modalData->data_inicio)->format('d/m/Y') }}</p>
-                <p><strong>Data de finalização:</strong> {{ \Carbon\Carbon::parse($modalData->data_fim)->format('d/m/Y') }}</p>
+            <!-- Conteúdo Rolável -->
+            <div class="p-6 text-[#3e693e] overflow-y-auto">
+                <div class="space-y-4">
+                    <div>
+                        <p class="font-semibold">Resumo:</p>
+                        <p class="mt-1 break-all">{{ $modalData->resumo }}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold">Carga horária:</p>
+                            <p>{{ $modalData->carga_horaria }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Vagas:</p>
+                            <p>{{ $modalData->vagas }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Data de início:</p>
+                            <p>{{ \Carbon\Carbon::parse($modalData->data_inicio)->format('d/m/Y') }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Data de finalização:</p>
+                            <p>{{ \Carbon\Carbon::parse($modalData->data_fim)->format('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Modal Footer -->
-            <div class="flex justify-end border-t p-2">
+            <div class="flex justify-between border-t p-4 sticky bottom-0 bg-white">
                 <x-back-link href="{{ route('cursos.index') }}" class="mr-2">
                     Fechar
                 </x-back-link>
-                    <x-back-link href="{{ route('cursos.inscrever', $modalData->id) }}" class="px-4 py-2">
-                        Inscrever-se
-                    </x-back-link>
+                <x-back-link href="{{ route('cursos.inscrever', $modalData->id) }}" 
+                            class="px-4 py-2 bg-[#3e693e] text-white hover:bg-[#2a4a2a]">
+                    Inscrever-se
+                </x-back-link>
             </div>
         </div>
     </div>

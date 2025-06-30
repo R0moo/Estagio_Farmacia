@@ -47,9 +47,10 @@ class CursoController extends Controller
          
     }
 
-public function create(Projeto $projeto, Curso $curso)
+public function create(Projeto $projeto)
 {
-    return view('projetos.cursos.create', compact('projeto', 'curso'));
+    
+    return view('projetos.cursos.create', compact('projeto'));
 }
 
     public function store(Request $request, Projeto $projeto)

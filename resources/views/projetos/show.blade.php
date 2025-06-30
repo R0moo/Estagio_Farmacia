@@ -78,23 +78,22 @@
 </div>
 
         @isset($modalData)
-    <div class="fixed inset-0 bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-min mx-4">
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] flex flex-col">
 
             <div class="flex justify-center items-center border-b p-2">
                 <div class="flex flex-col items-center">
-                    @if ($postagem->foto)
-                <img src="{{ asset('storage/' . $modalData->foto) }}" alt="postagem" style="max-width:20rem"> <br>
-                @endif
-                <h3 class="text-xl font-bold text-[#3e693e]">{{ $modalData->titulo }}</h3>
+                    @if ($modalData->foto)
+                        <img src="{{ asset('storage/' . $modalData->foto) }}" alt="postagem" class="max-w-[20rem] max-h-[20rem] object-contain"> <br>
+                    @endif
+                    <h3 class="text-xl font-bold text-[#3e693e]">{{ $modalData->titulo }}</h3>
                 </div>
             </div>
 
-            <div class="p-4 text-[#3e693e]">
+            <div class="p-4 text-[#3e693e] overflow-y-auto">
                 <p><strong>Descrição:</strong> {{ $modalData->descricao }}</p>
             </div>
 
-            <!-- Modal Footer -->
             <div class="flex justify-end border-t p-2">
                 <x-back-link href="{{ route('projetos.show', $projeto) }}" class="mr-2">
                     Fechar
